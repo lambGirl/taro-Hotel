@@ -1,0 +1,149 @@
+
+  .orderDetail-status{
+    background:linear-gradient(90deg,rgba(99,198,249,1),rgba(72,157,245,1));
+    color: #fff;
+    padding:0 30px;
+    //多行
+    .orderDetail-status-Content{
+      display: flex;
+      display:-webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      align-items: center;
+      justify-content: space-between;
+      box-sizing: border-box;
+      &>.status-text{
+        span{
+          vertical-align: middle;
+        }
+        font-size: 34px;
+        .orderStatus{
+          display: inline-block;
+          vertical-align: top;
+          width: 37px;
+          height: 37px;
+          margin-right: 15px;
+          vertical-align: middle;
+        }
+        .used{
+          background: url("../../asset/img/ok@2x.png")no-repeat;
+          background-size: cover;
+        }
+        .retired{
+          background: url("../../asset/img/shibai@2x.png")no-repeat;
+          background-size: cover;
+        }
+        .useing{
+          background: url("../../asset/img/main_btn_time_nor-@2x.png")no-repeat;
+          background-size: cover;
+        }
+        .paying{
+          background: url("../../asset/img/main_btn_time_nor-@2x.png")no-repeat;
+          background-size: cover;
+        }
+      }
+      >.price-detail{
+        font-size: 36px;
+        span{
+          vertical-align: middle;
+        }
+        .orderStatus-warning{
+          display: inline-block;
+          width: 32px;
+          height: 32px;
+          background: url("../../asset/img/price_detail.png") no-repeat;
+          background-size: cover;
+          margin-left: 10px;
+          vertical-align: middle;
+        }
+      }
+    }
+    .mangLine{
+      padding: 42px 0 25px 0;
+    }
+    .singleLine{
+      height: 108px;
+    }
+
+    .orderDetail-status-detail{
+      padding-bottom: 23px;
+      font-size: 24px;
+      span{
+        color: #FFCC9E;
+      }
+    }
+  }
+
+  /*.ticketOrderDetail-cardContent{
+    !*padding-top: *30px;*!
+    font-size: 26px;
+    p{
+      padding-bottom: 30px;
+      .name{
+        color:#8C8C8C;
+        padding-right: 97px;
+      }
+    }
+  }
+  .footer-fixed-paying{
+    position: fixed;
+    bottom:0;
+    left:0;
+    width: 100%;
+    >:first-child{
+      display: flex;
+      display:-webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      height: 104px;
+      line-height: 104px;
+      width:100%;
+      >:first-child{
+        text-align:center;
+        color:#3E3E3E;
+        flex:1;
+        background: #fff;
+      }
+      >:last-child{
+        color: #fff;
+        text-align: center;
+        flex:1;
+        background: #F48831;
+      }
+    }
+  }
+  .footer-fixed-rebuy{
+    position: fixed;
+    bottom:0;
+    left:0;
+    width: 100%;
+    line-height:104px;
+    height: 104px;
+    color: #fff;
+    text-align: center;
+    background: #F48831;
+  }
+  .refundBtn{
+    background: #B6D2E7;
+    color: #fff;
+    height: 70px;
+    width: 75%;
+    margin:30px auto 0 auto;
+    line-height: 70px;
+    text-align: center;
+    font-size: 34px;
+    border-radius: 8px;
+  }*/
+
+.doubleLine{
+  max-height: 70px;
+  /*line-height: *32px;*/
+  line-height: 1.2px;
+  overflow: hidden;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  display: -webkit-box!important;
+  -webkit-line-clamp: 2!important;
+}

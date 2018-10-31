@@ -1,0 +1,79 @@
+Arguments: 
+  C:\Program Files (x86)\Mysoft\nodeJS\node.exe C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js install
+
+PATH: 
+  C:\Program Files (x86)\Razer Chroma SDK\bin;C:\Program Files\Razer Chroma SDK\bin;C:\Program Files\WinRAR;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Mysoft\Git\cmd;C:\Program Files\Java\jdk1.8.0_111\bin;C:\Program Files\Java\jdk1.8.0_111\jre\bin;C:\Program Files (x86)\Mysoft\nodeJS;C:\Program Files (x86)\Mysoft\nodeJS\;C:\Users\Administrator\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\Administrator\AppData\Local\Yarn\bin;C:\Program Files\TortoiseSVN\bin;C:\Users\Administrator\AppData\Roaming\npm
+
+Yarn version: 
+  1.9.4
+
+Node version: 
+  8.11.4
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: ENOENT: no such file or directory, copyfile 'C:\Users\Administrator\AppData\Local\Yarn\Cache\v2\npm-inherits-2.0.1-b17d08d326b4423e568eff719f91b0b1cbdf69f1\inherits.js' -> 'E:\project\Company\tz_bus\BST-Hotel-taro\node_modules\assert\node_modules\inherits\inherits.js'
+
+npm manifest: 
+  {
+  	"name": "BST-Hotel-taro",
+  	"version": "1.0.0",
+  	"private": true,
+  	"description": "第二次测试",
+  	"main": "index.js",
+  	"scripts": {
+  		"build:weapp": "taro build --type weapp",
+  		"build:h5": "taro build --type h5",
+  		"build:rn": "taro build --type rn",
+  		"dev:weapp": "npm run build:weapp -- --watch",
+  		"dev:h5": "npm run build:h5 -- --watch",
+  		"dev:rn": "npm run build:rn -- --watch",
+  		"test": "echo \"Error: no test specified\" && exit 1"
+  	},
+  	"author": "",
+  	"license": "MIT",
+  	"dependencies": {
+  		"@tarojs/async-await": "1.0.7",
+  		"@tarojs/components": "1.0.7",
+  		"@tarojs/redux": "1.0.7",
+  		"@tarojs/redux-h5": "1.0.7",
+  		"@tarojs/router": "1.0.7",
+  		"@tarojs/taro": "1.0.7",
+  		"@tarojs/taro-h5": "1.0.7",
+  		"@tarojs/taro-weapp": "1.0.7",
+  		"nervjs": "^1.3.0",
+  		"redux": "^4.0.0",
+  		"redux-logger": "^3.0.6",
+  		"redux-thunk": "^2.3.0",
+  		"taro-ui": "^1.3.1"
+  	},
+  	"devDependencies": {
+  		"@tarojs/plugin-babel": "1.0.7",
+  		"@tarojs/plugin-csso": "1.0.7",
+  		"@tarojs/plugin-less": "1.0.7",
+  		"@tarojs/plugin-sass": "1.0.7",
+  		"@tarojs/plugin-uglifyjs": "1.0.7",
+  		"@tarojs/webpack-runner": "1.0.7",
+  		"@types/react": "^16.4.8",
+  		"@types/webpack-env": "^1.13.6",
+  		"babel-eslint": "^8.2.3",
+  		"babel-plugin-transform-class-properties": "^6.24.1",
+  		"babel-plugin-transform-decorators-legacy": "^1.3.4",
+  		"babel-plugin-transform-jsx-stylesheet": "^0.6.5",
+  		"babel-plugin-transform-object-rest-spread": "^6.26.0",
+  		"babel-preset-env": "^1.6.1",
+  		"eslint": "^4.19.1",
+  		"eslint-config-taro": "1.0.7",
+  		"eslint-plugin-import": "^2.12.0",
+  		"eslint-plugin-react": "^7.8.2",
+  		"eslint-plugin-taro": "1.0.7"
+  	}
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

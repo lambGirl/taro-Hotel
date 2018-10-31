@@ -1,0 +1,99 @@
+@import "../../app.less";
+
+.orderItem-container{
+  width: 100%;
+  background: #fff;
+  .top{
+    height: 74px;
+    border-bottom: 1px solid #E5E5E5;
+    text-align: right;
+    font-size: 28px;
+    line-height: 74px;
+    padding-right: 32px;
+  }
+
+  .middle{
+    height: 210px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 32px;
+    .left{
+      display: flex;
+      align-items: center;
+      image{
+        width: 140px;
+        height: 160px;
+      }
+      .taro-img{
+          width: 140px;
+          height: 160px;
+          img{
+            width: 100%;
+            height: 100%;
+          }
+      }
+      .content{
+        height:100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 32px 0 35px 20px;
+        box-sizing: border-box;
+        .content1{
+          color: #2B2B2B;
+          font-size: 34px;
+          line-height: 38px;
+          span{
+            color: #999999;
+            font-size: 24px;
+          }
+          text{
+            color: #999999;
+            font-size: 24px;
+          }
+        }
+        .content2{
+          color:#999999;
+          font-size: 24px;
+          padding-top: 35px;
+          box-sizing: border-box;
+        }
+      }
+    }
+    .priceShow{
+      color: #3E3E3E;
+      font-size: 32px;
+      line-height: 32px;
+      padding-top: 32px;
+    }
+
+  }
+
+  .bottom{
+    border-top: 1px solid #E5E5E5;
+    height: 85px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    div {
+      margin-right: 32px;
+    }
+    view{
+      margin-right: 32px;
+    }
+
+    .con_btn{
+      width: 136px;
+      height: 50px;
+      text-align: center;
+      line-height: 50px;
+    }
+    .del{
+      color: #ACACAC;
+      font-size: 24px;
+      border:2px solid rgba(129,129,129,.4);
+      border-radius: 10px;
+    }
+  }
+
+}

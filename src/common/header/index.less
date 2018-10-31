@@ -1,0 +1,78 @@
+
+.header-parent {
+  position: relative;
+  width: 100%;
+  font-size: 34px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  &.h5-header-gradient,&.weapp-header-gradient{
+    background:linear-gradient(90deg,rgba(99,198,249,1),rgba(72,157,245,1));
+    color:#fff
+  }
+  &.h5-header-white,&.weapp-header-white{
+    background:#fff;
+    color:#3E3E3E;
+  }
+
+  &.weapp-header{
+    padding-top: 40px;
+  }
+  .header-common{
+    width: 100%;
+    position:relative;
+    height: 90px;
+    .left-header{
+      position: absolute;
+      min-width: 14%;
+      box-sizing: border-box;
+      height:100%;
+      left:0;
+      display: flex;
+      display:-webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index:990;
+      .headerleftIconWhite{
+        display: inline-block;
+        background: url("../../asset/img/btn_white-back@2x.png") no-repeat;
+        width: 24px;
+        height: 42px;
+        background-size: 100%;
+        vertical-align: center;
+      }
+      .headerleftIconBlack{
+        display: inline-block;
+        background: url("../../asset/img/btn_black-back@2x.png") no-repeat;
+        width: 24px;
+        height: 42px;
+        background-size: 100%;
+        vertical-align: center;
+      }
+    }
+    .center-header{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      line-height: 90px;
+      text-align: center;
+      box-sizing: border-box;
+    }
+    .right-header{
+      position: absolute;
+      right: 0;
+      height: 100%;
+      line-height: 90px;
+      min-width: 26%;
+      text-align: right;
+      padding-right: 30px;
+      box-sizing: border-box;
+      z-index:1000;
+    }
+  }
+}

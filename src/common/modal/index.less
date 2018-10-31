@@ -1,0 +1,43 @@
+.bst-slider-box{
+  position: relative;
+  width: 100%;
+  background-color: #3c8899;
+  height: 40px;
+  margin-top: 20px;
+  .bst-slider-content{
+    position: absolute;
+    background-color: #cec7cc;
+    box-shadow: inset 0 1px 2px #999999 ;
+    height: 6px;
+    top: 50%;
+    left: 0;
+    margin-top: -3px;
+    width: 100%;
+    .bst-slider-handle{
+      position: absolute;
+      top: -17px;
+      background-color: white;
+      border-radius: 50%;
+      height: 40px;
+      width: 40px;
+      box-shadow: 0 0 5px #999;
+    }
+    .left-handle{
+      left: 0;
+    }
+    .right-handle{
+      right: 0;
+    }
+    .bst-sliderMask-left,.bst-sliderMask-right{
+      height: 100%;
+      background-color: white;
+    }
+    .bst-sliderMask-left{
+      float: left;
+    }
+    .bst-sliderMask-right{
+      float: right;
+    }
+  }
+}
+
