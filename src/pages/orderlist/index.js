@@ -61,7 +61,7 @@ export default class Orderdetail extends Component {
                   scrollY
                   scrollWithAnimation
                   scrollTop='0'
-                  style='height: 300px'
+                  style='height: 600px'
                   lowerThreshold='20'
                   upperThreshold='20'
                   onScrollToUpper={this.onScrollToUpper}

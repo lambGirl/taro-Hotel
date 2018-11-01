@@ -1,0 +1,156 @@
+//温馨提示
+.title-content-topDown{
+  width: 100%;
+  padding-bottom: 28px;
+  .title-content-item{
+    width:100%;
+    padding-bottom: 30px;
+    .title{
+      font-size: 28px;
+      line-height: 30px;
+      color: #38A8F6;
+      padding-bottom: 20px;
+    }
+    .height-width-auto{
+      font-size: 26px;
+      color: #333;
+    }
+  }
+  &:last-child{
+    padding-bottom: 0;
+  }
+}
+//酒店信息
+.cardBox-content-model{
+  .model2{
+    width: 100%;
+    padding: 0 30px 20px;
+    border-bottom: 1px solid #e5e5e5;
+    box-sizing: border-box;
+    margin-bottom: 19px;
+    &.np-mb{
+      margin-bottom:0;
+    }
+    .header{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      line-height: 30px;
+      margin-bottom: 16px;
+      .header-line{
+        font-size: 28px;
+        color:#333333;
+      }
+
+      .header-right{
+        color:#38A8F6;
+        font-size: 28px;
+        display: flex;
+        align-items: center;
+        .icon{
+          margin-left: 10px;
+          width: 16px;
+          height: 26px;
+          background: url("../../../asset/img/right.png") no-repeat;
+          background-size: cover;
+        }
+      }
+    }
+
+    .content{
+      font-size: 26px;
+      color: #8C8C8C;
+    }
+  }
+
+  .btn-double{
+    height: 100px;
+    display: flex;
+    align-items: center;
+    color: #38A8F6;
+    font-size: 30px;
+    text-align: center;
+    .btn:first-child{
+      border-right: 1px solid #E5E5E5;
+    }
+    .btn{
+      width: 50%;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+      span,text{
+        vertical-align: middle;
+        margin-left: 10px;
+      }
+      .address::before{
+        content: '';
+        display: inline-block;
+        vertical-align: middle;
+        width: 30px;
+        height: 36px;
+        background: url("../../../asset/img/address.png") no-repeat;
+        background-size: cover;
+      }
+      .phone::before{
+        content: '';
+        display: inline-block;
+        vertical-align: middle;
+        width: 30px;
+        height: 36px;
+        background: url("../../../asset/img/phone.png") no-repeat;
+        background-size: cover;
+      }
+    }
+  }
+
+}
+//单行显示
+
+.line-list-item{
+  padding-bottom:10px;
+  color:#949494;
+  display: flex;
+  display:-webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  /*min-height: @base*60rem;*/
+  font-size: 24px;
+  line-height:  24px;
+  .name{
+    width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex:1;
+    line-height: 40px;
+  }
+  .content{
+    flex:3;
+    color:#3E3E3E;
+    font-size: 26px;
+    line-height: 40px;
+  }
+  .doubleLine{
+    max-height: 70rem;
+    /*line-height: @base*32rem;*/
+    overflow: hidden;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    display: -webkit-box!important;
+    -webkit-line-clamp: 2!important;
+  }
+  &:last-child{
+    padding-bottom:20px;
+  }
+
+}
+
+.line{
+  border-top: 1px solid #E5E5E5;
+  margin-left: 30px;
+}
+
+

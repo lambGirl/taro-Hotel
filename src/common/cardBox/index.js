@@ -11,12 +11,15 @@ export default  class CardBox extends Component{
         cardTitleIcon: true,     //需不需要Icon
         CardBoxDefault: true,
         cardCenterBottom: false, //需不需要底部的横线
+        mb20:false,             //设置距离底部20像素
 
     }
 
     render(){
-        let {cardTitleIcon, cardTitle,cardCenterBottom,disabled ,CardBoxDefault} =  this.props;
-        return <View className='card'>
+        let {cardTitleIcon, cardTitle,cardCenterBottom,disabled ,CardBoxDefault,mb} =  this.props;
+        return <View className={classnames('card',{
+            ['marginBottom20']: mb
+        })}>
             <View className={classnames('card-Title',{
                 ['borderBottom']:cardCenterBottom,
                 ['CardBoxDefault']: CardBoxDefault
