@@ -1,0 +1,48 @@
+.maskModel{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  .mask{
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    background: rgba(102, 102, 102, .3);
+  }
+  .model{
+    height: 1063px;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    z-index: 2;
+    background: #fff;
+
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    animation:changeHeight .6s;
+    -webkit-animation:changeHeight .6s; /* Safari 和 Chrome */
+
+    .close{
+      position: absolute;
+      right: 30px;
+      top: 30px;
+      font-size: 25px;
+    }
+  }
+
+}
+
+@keyframes changeHeight
+{
+  from {height:0px;}
+  to {height:1063px;}
+}
+
+@-webkit-keyframes changeHeight /*Safari and Chrome*/
+{
+  from {height: 0px;}
+  to {height: 1063px;}
+}

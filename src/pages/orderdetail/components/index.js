@@ -1,8 +1,10 @@
 import Ts from './wxts';
-import JdMessage from './jdMessage';
+import JdMessageListItem from './jbMessageListItem';
+import JdMessageFooterBtn from './jbMessageFooterBtn';
 import LineList from './lineListCardContent';
 export {
     Ts,
-    JdMessage,
+    JdMessageListItem,
+    JdMessageFooterBtn,
     LineList
 }
