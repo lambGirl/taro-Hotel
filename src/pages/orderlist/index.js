@@ -1,7 +1,7 @@
 import Taro, { Component } from '@tarojs/taro';
 import { View, ScrollView } from '@tarojs/components';
 import { connect } from '@tarojs/redux';
-import { OrderItem, TzHeader, TabItem } from  '../../common'
+import { OrderItem, TzHeader, TabItem,Scroll } from  '../../common'
 import './index.less';
 import { back }  from '../../utils'
 
@@ -18,6 +18,9 @@ export default class Orderdetail extends Component {
       super(props);
       this.state = {
           tabActive:0,
+          listData: [0,1,2,3],
+          page: 1,
+          total: 5
       }
   }
 
@@ -31,6 +34,16 @@ export default class Orderdetail extends Component {
 
   onScrollToLower = (e) => {
       console.log("e----onScrollToLower",e);
+      //执行加载并且设置数据
+    let data = [1,2,3,4,5], {listData, page, total} =  this.state;
+    page += 1;
+    if(page > total){
+      return;
+    };
+    this.setState({
+      "listData": listData.concat(data),
+      'page': page
+    })
   }
 
   tabPropsClick(index){
@@ -50,25 +63,26 @@ export default class Orderdetail extends Component {
   }
 
   render() {
-    let { tabActive } = this.state;
+    let { tabActive, listData, page, total} = this.state;
 
     return (
       <View className='orderDetail-page'>
-          <TzHeader  title='酒店订单' mode='gradient' type={process.env.TARO_ENV} onClick={this.headerLeftClick.bind(this)}/>
+          <TzHeader  title='酒店订单' mode='gradient' type={process.env.TARO_ENV} onClick={this.headerLeftClick.bind(this)} />
           <TabItem tabItem={["全部","未使用","已使用"]} onClick={this.tabPropsClick.bind(this)} tabActive={tabActive}>
-              <ScrollView
-                  className='scrollview'
-                  scrollY
-                  scrollWithAnimation
-                  scrollTop='0'
-                  style='height: 600px'
-                  lowerThreshold='20'
-                  upperThreshold='20'
-                  onScrollToUpper={this.onScrollToUpper}
-                  onScrollToLower={this.onScrollToLower}>
-                  <OrderItem  onClick={this.OrderItemClick.bind(this)} />
-                  <OrderItem />
-              </ScrollView>
+              <Scroll
+                page={page}
+                total={total}
+                onScrollToUpper={this.onScrollToUpper.bind(this)}
+                onScrollToLower={this.onScrollToLower.bind(this)}
+              >
+                <View>
+                  {
+                    listData.map((item)=>{
+                      return  <OrderItem  onClick={this.OrderItemClick.bind(this)} />
+                    })
+                  }
+                </View>
+              </Scroll>
           </TabItem>
       </View>
     )

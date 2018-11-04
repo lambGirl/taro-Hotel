@@ -4,11 +4,14 @@ import TabItem from "./tab"
 import OrderDetailStatus from './orderDetailStatus'
 import TzCardBox from './cardBox'
 import MaskModel from './maskModel'
+import Scroll from './scroll'
+
 export {
     TzHeader,
     OrderItem,
     TabItem,
     OrderDetailStatus,
     TzCardBox,
-    MaskModel
+    MaskModel,
+  Scroll
 }
