@@ -21,7 +21,7 @@ export default class Scroll extends Component{
       scrollWithAnimation
       scrollTop='0'
       style='height: 400px'
-      lowerThreshold='20'
+      lowerThreshold='40'
       upperThreshold='20'
       onScrollToUpper={this.onScrollToUpper.bind(this)}
       onScrollToLower={this.onScrollToLower.bind(this)}

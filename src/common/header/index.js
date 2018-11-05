@@ -8,7 +8,7 @@ import './index.less'
     constructor(props){
         super(props);
         this.state = {
-            headerHeight: 0,
+            headerHeight: 90,
         }
     }
     static defaultProps = {
@@ -21,7 +21,7 @@ import './index.less'
             wx.getSystemInfo({
                 success: res => {
                     //console.log("statusBarHeight",res.statusBarHeight,  headerHeight);
-                    headerHeight = res.statusBarHeight*2;
+                    headerHeight += res.statusBarHeight*2;
                     this.setState({
                        "headerHeight":  headerHeight
                     })
@@ -41,7 +41,7 @@ import './index.less'
 
     leftPropsClick(){
       let { defaultClick, onClick} = this.props;
-      console.log(typeof  onClick);
+     // console.log(typeof  onClick);
       if(typeof  onClick === "function"){
           onClick();
           return;
@@ -54,10 +54,10 @@ import './index.less'
         let leftIcon =  this.leftIcon(mode), styles={
             "paddingTop":Taro.pxTransform(headerHeight)
         };
-        //let heightVal = Taro.pxTransform(headerHeight);
-        //console.log("heightVal",heightVal);
+
+        let heightVal = Taro.pxTransform(headerHeight);
         //判断微信的header
-        return <View  style={styles} className={classnames('header-parent',{
+        return <View  style={{"height":heightVal}} className={classnames('header-parent',{
               [`${type}-header-${mode}`]:true,
             })}>
                 <View className={classnames({

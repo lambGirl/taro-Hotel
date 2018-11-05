@@ -20,7 +20,8 @@ class App extends Component {
     pages: [
       'pages/index/index',
       'pages/orderlist/index',
-      'pages/orderdetail/index'
+      'pages/orderdetail/index',
+      'pages/hotellist/index'
     ],
     window: {
         "navigationStyle": "custom",

@@ -6,85 +6,114 @@ import './index.less';
 import { back }  from '../../utils'
 
 @connect(({orderlist}) => ({
-  ...orderlist,
+    ...orderlist,
 }))
 
 export default class Orderdetail extends Component {
-  config = {
-      "navigationBarTextStyle": "white"
-  };
-
-  constructor(props){
-      super(props);
-      this.state = {
-          tabActive:0,
-          listData: [0,1,2,3],
-          page: 1,
-          total: 5
-      }
-  }
-
-  componentDidMount = () => {
-
-  }
-
-  onScrollToUpper = (e) => {
-      console.log("e----onScrollToUpper",e);
-  }
-
-  onScrollToLower = (e) => {
-      console.log("e----onScrollToLower",e);
-      //执行加载并且设置数据
-    let data = [1,2,3,4,5], {listData, page, total} =  this.state;
-    page += 1;
-    if(page > total){
-      return;
+    config = {
+        "navigationBarTextStyle": "white"
     };
-    this.setState({
-      "listData": listData.concat(data),
-      'page': page
-    })
-  }
 
-  tabPropsClick(index){
-      this.setState({
-          "tabActive": index
-      });
-  }
+    constructor(props){
+        super(props);
+        this.state = {
+            tabActive:0,
+            listData: [0,1,2,3],
+            page: 1,
+            total: 5
+        }
+    }
 
-  headerLeftClick(){
-    back();
-  }
-  OrderItemClick(){
-    // 跳转到目的页面，打开新页面
-    Taro.navigateTo({
-      url: '/pages/orderdetail/index'
-    });
-  }
+    componentDidMount = () => {
 
-  render() {
-    let { tabActive, listData, page, total} = this.state;
+    }
 
-    return (
-      <View className='orderDetail-page'>
-          <TzHeader  title='酒店订单' mode='gradient' type={process.env.TARO_ENV} onClick={this.headerLeftClick.bind(this)} />
-          <TabItem tabItem={["全部","未使用","已使用"]} onClick={this.tabPropsClick.bind(this)} tabActive={tabActive}>
-              <Scroll
-                page={page}
-                total={total}
-                onScrollToUpper={this.onScrollToUpper.bind(this)}
-                onScrollToLower={this.onScrollToLower.bind(this)}
-              >
-                <View>
-                  {
-                    listData.map((item)=>{
-                      return  <OrderItem  onClick={this.OrderItemClick.bind(this)} />
-                    })
-                  }
-                </View>
-              </Scroll>
-          </TabItem>
-      </View>
-    )
-  }
+    onScrollToUpper = (e) => {
+       // console.log("e----onScrollToUpper",e);
+    }
+
+    onScrollToLower = (e) => {
+       // console.log("e----onScrollToLower",e);
+        //执行加载并且设置数据
+        let data = [1,2,3,4,5], {listData, page, total} =  this.state;
+        page += 1;
+        if(page > total){
+            return;
+        };
+        this.setState({
+            "listData": listData.concat(data),
+            'page': page
+        })
+    }
+
+    tabPropsClick(index){
+        this.setState({
+            "tabActive": index,
+            page:1,
+            total:5
+        });
+    }
+
+    headerLeftClick(){
+        back();
+    }
+    OrderItemClick(){
+        // 跳转到目的页面，打开新页面
+        Taro.navigateTo({
+            url: '/pages/orderdetail/index'
+        });
+    }
+
+    render() {
+        let { tabActive, listData, page, total} = this.state;
+        return (
+            <View className='orderDetail-page'>
+                <TzHeader  title='酒店订单' mode='gradient' type={process.env.TARO_ENV} onClick={this.headerLeftClick.bind(this)} />
+                <TabItem tabItem={["全部","未使用","已使用"]} onClick={this.tabPropsClick.bind(this)} tabActive={tabActive}>
+                    {tabActive == 0?<Scroll
+                        page={page}
+                        total={total}
+                        onScrollToUpper={this.onScrollToUpper.bind(this)}
+                        onScrollToLower={this.onScrollToLower.bind(this)}
+                    >
+                        <View>
+                            {
+                                listData.map((item)=>{
+                                    return  <OrderItem  onClick={this.OrderItemClick.bind(this)} />
+                                })
+                            }
+                        </View>
+                    </Scroll>:null}
+                    {tabActive == 1?<Scroll
+                        page={page}
+                        total={total}
+                        onScrollToUpper={this.onScrollToUpper.bind(this)}
+                        onScrollToLower={this.onScrollToLower.bind(this)}
+                    >
+                        <View>
+                            {
+                                listData.map((item)=>{
+                                    return  <OrderItem  onClick={this.OrderItemClick.bind(this)} />
+                                })
+                            }
+                        </View>
+                    </Scroll>:null}
+                    {tabActive == 2?<Scroll
+                        page={page}
+                        total={total}
+                        onScrollToUpper={this.onScrollToUpper.bind(this)}
+                        onScrollToLower={this.onScrollToLower.bind(this)}
+                    >
+                        <View>
+                            {
+                                listData.map((item)=>{
+                                    return  <OrderItem  onClick={this.OrderItemClick.bind(this)} />
+                                })
+                            }
+                        </View>
+                    </Scroll>:null}
+                </TabItem>
+            </View>
+        )
+    }
 }

@@ -3,8 +3,8 @@ import OrderItem from "./orderItem"
 import TabItem from "./tab"
 import OrderDetailStatus from './orderDetailStatus'
 import TzCardBox from './cardBox'
-import MaskModel from './maskModel'
-import Scroll from './scroll'
+import Scroll from "./scroll"
+import SelectBar from './selectBar'
 
 export {
     TzHeader,
@@ -12,6 +12,6 @@ export {
     TabItem,
     OrderDetailStatus,
     TzCardBox,
-    MaskModel,
-  Scroll
+    Scroll,
+    SelectBar
 }
