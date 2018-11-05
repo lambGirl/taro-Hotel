@@ -73,6 +73,7 @@ export default class Orderdetail extends Component {
                     {tabActive == 0?<Scroll
                         page={page}
                         total={total}
+                        needMore={true}
                         onScrollToUpper={this.onScrollToUpper.bind(this)}
                         onScrollToLower={this.onScrollToLower.bind(this)}
                     >
@@ -87,6 +88,7 @@ export default class Orderdetail extends Component {
                     {tabActive == 1?<Scroll
                         page={page}
                         total={total}
+                        needMore={true}
                         onScrollToUpper={this.onScrollToUpper.bind(this)}
                         onScrollToLower={this.onScrollToLower.bind(this)}
                     >
@@ -101,6 +103,7 @@ export default class Orderdetail extends Component {
                     {tabActive == 2?<Scroll
                         page={page}
                         total={total}
+                        needMore={true}
                         onScrollToUpper={this.onScrollToUpper.bind(this)}
                         onScrollToLower={this.onScrollToLower.bind(this)}
                     >

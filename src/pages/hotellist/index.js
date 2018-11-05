@@ -32,7 +32,8 @@ export default class HotelList extends Component{
         let { outHeight } =  this.state;
         return <View>
             <TzHeader  title='酒店列表' mode='gradient' type={process.env.TARO_ENV} />
-            <SelectBar outHeight={outHeight}/>
+            <SelectBar outHeight={outHeight} />
+
         </View>
     }
 }

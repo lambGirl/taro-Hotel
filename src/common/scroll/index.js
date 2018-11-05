@@ -14,7 +14,7 @@ export default class Scroll extends Component{
     this.props.onScrollToLower(e);
   }
   render(){
-    let {page, total} =  this.props;
+    let {page, total,needMore} =  this.props;
     return <ScrollView
       className='scrollview'
       scrollY
@@ -29,9 +29,11 @@ export default class Scroll extends Component{
       <View>
         {this.props.children}
       </View>
-      <View className='pagedown'>
-        {page >= total? '加载完成...': '加载中...'}
-      </View>
+        {
+            needMore?<View className='pagedown'>
+                {page >= total? '加载完成...': '加载中...'}
+            </View>:null
+        }
     </ScrollView>
   }
 }
