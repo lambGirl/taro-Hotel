@@ -61,6 +61,16 @@ const config = {
         }
       }
     },
+    devServer: {
+        proxy: {
+            "/api": {
+                //"target": "http://jsonplaceholder.typicode.com/",
+                "target": "https://wap.tz12306.com/",
+                "changeOrigin": true,
+                "pathRewrite": { "^/api" : "/api" }
+            },
+        }
+    }
   }
 }
 

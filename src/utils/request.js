@@ -2,8 +2,8 @@ import Taro from '@tarojs/taro';
 import { baseUrl, noConsole } from '../config';
 
 const request_data = {
-  platform: 'wap',
-  rent_mode: 2,
+   channelTokenName: '',
+   _p_from: '',
 };
 
 export default (options = { method: 'GET', data: {} }) => {
@@ -11,7 +11,7 @@ export default (options = { method: 'GET', data: {} }) => {
     console.log(`${new Date().toLocaleString()}【 M=${options.url} 】P=${JSON.stringify(options.data)}`);
   }
   return Taro.request({
-    url: baseUrl + options.url,
+    url: options.url,
     data: {
       ...request_data,
       ...options.data
@@ -21,21 +21,21 @@ export default (options = { method: 'GET', data: {} }) => {
     },
     method: options.method.toUpperCase(),
   }).then((res) => {
-    const { statusCode, data } = res;
-    if (statusCode >= 200 && statusCode < 300) {
-      if (!noConsole) {
-        console.log(`${new Date().toLocaleString()}【 M=${options.url} 】【接口响应：】`,res.data);
+      const { statusCode, data } = res;
+      //console.log('data',data);
+      if (statusCode >= 200 && statusCode < 300) {
+           if(data.data.pubResponse.code !== '0000'){
+                Taro.showToast({
+                    title: `${data.data.pubResponse.msg}`,
+                    icon: 'none',
+                    mask: true,
+                });
+        }
+        return data.data;
+      } else {
+          throw new Error(`网络请求错误，状态码${statusCode}`);
       }
-      if (data.status !== 'ok') {
-        Taro.showToast({
-          title: `${res.data.error.message}~` || res.data.error.code,
-          icon: 'none',
-          mask: true,
-        });
-      }
-      return data;
-    } else {
-      throw new Error(`网络请求错误，状态码${statusCode}`);
-    }
+
+
   })
 }

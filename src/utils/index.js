@@ -1,8 +1,18 @@
 import Taro from "@tarojs/taro";
 let headerHeight = 45;
 
+class Singer{
+    constructor({cityNo,cityName,parentRegionName,childrens,shortName}) {
+        this.cityNo = cityNo;
+        this.cityName = cityName,
+            this.shortName = shortName,
+            this.parentRegionName = parentRegionName,
+            this.childrens = childrens||[]
+    }
+}
+
 function back(){
-    console.log("WEAPP",Taro.getEnv() )
+   // console.log("WEAPP",Taro.getEnv() )
     if(Taro.getEnv() === "WEAPP"){
         Taro.navigateBack();
         return;
@@ -10,6 +20,78 @@ function back(){
     history.back();
 
 }
+//按照汉字排序
+var localeCompare =  function(a,b){
+    if(!a&&!b){
+        return;
+    }
+    return a.shortName.localeCompare(b.shortName);
+}
+//得到城市数据
+const redetailSingleData = (list)=>{
+
+
+    let map = {
+        other: {
+            title: '其他',
+            items: []
+        }
+    };
+
+   // console.log("list", list.entries());
+    //return;
+
+    for (let [index,item] of list.entries()) {
+        var first =  item.shortName.substr(0,1).toLocaleUpperCase()
+        if (!map[first]) {
+            map[first] = {
+                title: first,
+                items: []
+            }
+        }
+        if (/[a-zA-Z]/.test(first)) {
+            map[first].items.push(new Singer({
+                cityNo: item.cityNo,
+                cityName: item.cityName,
+                shortName:item.shortName,
+                parentRegionName: item.parentRegionName,
+                childrens:item.childrens||[]
+            }));
+        } else {
+            map.other.items.push(new Singer({
+                cityNo: item.cityNo,
+                cityName: item.cityName,
+                shortName:item.shortName,
+                parentRegionName: item.parentRegionName,
+                childrens:item.childrens||[]
+            }))
+        }
+    }
+    let ret = [];
+    for (let key in map) {
+        let val = map[key];
+        if (val.title.match(/[a-zA-Z]/)) {
+            val.items.sort(localeCompare);
+            // console.log("item", val.items);
+            ret.push(val)
+        }
+    }
+
+    ret.sort((a, b) => {
+        return a.title.charCodeAt(0) - b.title.charCodeAt(0)
+    });
+    // ret.sort().sort().sort()
+    return [...ret];
+}
+
+//得到大小写数据
+const shortcutListData = (list)=>{
+    let List = ["定位"];
+    let ListArry = list.map(group => {return group.title.substr(0,1)});
+    //   console.log("ListArry",ListArry);
+    return List.concat(ListArry);
+}
+
 const baseUtil = {
     numFixed:function(v,n){
         return n=n||2,n=Math.pow(10,n),Math.round(v*n)/n;
@@ -230,6 +312,7 @@ const baseUtil = {
 
 export {
     back,
-    headerHeight,
-    baseUtil
+    baseUtil,
+    redetailSingleData,
+    shortcutListData
 }

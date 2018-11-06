@@ -1,0 +1,102 @@
+page{
+  height:100%;
+  background: #f5f5f5;
+}
+.citylist-content{
+  .list-group{
+    .list-group-title{
+      height: 60px;
+      line-height: 60px;
+      padding-left: 20px;
+      font-size: 28px;
+      //background: #ECF0F4;
+      color: #3e3e3e;
+    }
+    .list-group-item{
+      display: flex;
+      display:-webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      align-items: center;
+      -webkit-align-items: center;
+      height: 86px;
+      line-height: 86px;
+      padding-left: 29px;
+      .avatar{
+        width: 68px;
+        height: 68px;
+        border-radius: 50%;
+      }
+      .content{
+       // margin-left: 29px;
+        width: 100%;
+        border-bottom: 1px solid #f5f5f5;
+        .name{
+          color:#3e3e3e;
+          font-size: 30px;
+        }
+        .parentRegion{
+          padding-left: 79px;
+          color: #adadad;
+          font-size: 26px;
+        }
+      }
+
+    }
+    .positionAdress{
+      display: flex;
+      display:-webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      padding: 0 30px;
+      height: 80px;
+      font-size: 28px;
+      color: #3E3E3E;
+      justify-content: space-between;
+      align-items: center;
+      background: #fff;
+      /*padding-right: @base*80rem;*/
+      .icon{
+        vertical-align: middle;
+        height: 100%;
+        width: 47px;
+        text-align: right;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        .locationIocn{
+          width: 35px;
+          height: 35px;
+          display: inline-block;
+          background-image: url(../../asset/img/gai_location.png);
+          background-repeat: no-repeat;
+          background-size: 100%;
+        }
+      }
+    }
+
+    .city-list-Item{
+      background: #fff;
+    }
+  }
+}
+
+.list-shortcut{
+  position: absolute;
+  z-index: 30;
+  right: 0;
+  top: 45%;
+  padding: 20px 0;
+  border-radius: 10px;
+  text-align: center;
+  font-family: 'Helvetica';
+  color: #3E3E3E;
+  .item{
+    padding: 10% 0;
+    line-height: 1;
+    color: #3E3E3E;
+    font-size: 24px;
+  }
+}

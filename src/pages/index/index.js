@@ -45,7 +45,7 @@ class Index extends Component {
   testalert(abc){
       // 跳转到目的页面，打开新页面
       Taro.navigateTo({
-          url: '/pages/hotellist/index'
+          url: '/pages/city/index'
       })
   }
   sliderChange(e){

@@ -3,7 +3,7 @@ import Taro from '@tarojs/taro';
 export default {
   namespace: 'globle',
   state: {
-    data:[]
+    data:[1,2,3,4]
   },
 
   effects: {
