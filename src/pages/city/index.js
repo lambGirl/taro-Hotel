@@ -16,7 +16,8 @@ export default class Position extends Component {
     constructor(props){
         super(props);
         this.state = {
-            viewId:''
+            viewId:'',
+            scrollTop: 0
         }
     }
 
@@ -29,12 +30,17 @@ export default class Position extends Component {
     }
     moveScroll(e){
         //console.log("e", e);
-        let { id } =  e.target.dataset
-        this.setState({
+        let { id } =  e.target.dataset;
+        // 如果是小程序环境
+        if(process.env.TARO_ENV === 'weapp'){
+          this.setState({
             "viewId": id
-        },()=>{
-           console.log("viewId", this.state.viewId)
-        })
+          },()=>{
+            console.log("viewId", this.state.viewId)
+          });
+        }
+        console.log(this.refs[id], id);
+        //如果是其他环境
     }
 
     render () {
@@ -46,7 +52,7 @@ export default class Position extends Component {
                 <ScrollView className='cityList'
                             scrollY
                             scrollWithAnimation
-                            scrollTop='0'
+                            scrollTop={this.state.scrollTop}
                             scrollIntoView ={this.state.viewId}
                             style='height:500px'>
                     <View className='citylist-content'>
@@ -57,7 +63,7 @@ export default class Position extends Component {
                                 <View className='icon'><View className="locationIocn"></View></View>
                             </View>
                         </View>
-                        <View  className="list-group" id='firstA'>
+                        <View  className="list-group" ref='firstA' id='firstA'>
                             <View className="list-group-title">A</View>
                             <View className='city-list-Item'>
                                 <View className='list-group-item'>
@@ -80,7 +86,7 @@ export default class Position extends Component {
                                 </View>
                             </View>
                         </View>
-                        <View  className="list-group" id='firstB'>
+                        <View  className="list-group" id='firstB' ref='firstB'>
                             <View className="list-group-title" >B</View>
                             <View className='city-list-Item'>
                                 <View className='list-group-item'>
@@ -104,7 +110,7 @@ export default class Position extends Component {
                             </View>
                         </View>
                         <View  className="list-group">
-                            <View className="list-group-title" id="firstA">A</View>
+                            <View className="list-group-title" id="firstC" ref='firstC'>C</View>
                             <View className='city-list-Item'>
                                 <View className='list-group-item'>
                                     <View className='content'>
@@ -126,31 +132,31 @@ export default class Position extends Component {
                                 </View>
                             </View>
                         </View>
-                        <View  className="list-group" id='firstC'>
-                            <View className="list-group-title">C</View>
-                            <View className='city-list-Item'>
-                                <View className='list-group-item'>
-                                    <View className='content'>
-                                        <Text className='name'>绵阳</Text>
-                                        <Text className='parentRegion'>四川</Text>
-                                    </View>
-                                </View>
-                                <View className='list-group-item'>
-                                    <View className='content'>
-                                        <Text className='name'>绵阳</Text>
-                                        <Text className='parentRegion'>四川</Text>
-                                    </View>
-                                </View>
-                                <View className='list-group-item'>
-                                    <View className='content'>
-                                        <Text className='name'>绵阳</Text>
-                                        <Text className='parentRegion'>四川</Text>
-                                    </View>
-                                </View>
-                            </View>
-                        </View>
-                        <View  className="list-group" id='firstD'>
+                        <View  className="list-group" id='firstD' ref='firstD'>
                             <View className="list-group-title">D</View>
+                            <View className='city-list-Item'>
+                                <View className='list-group-item'>
+                                    <View className='content'>
+                                        <Text className='name'>绵阳</Text>
+                                        <Text className='parentRegion'>四川</Text>
+                                    </View>
+                                </View>
+                                <View className='list-group-item'>
+                                    <View className='content'>
+                                        <Text className='name'>绵阳</Text>
+                                        <Text className='parentRegion'>四川</Text>
+                                    </View>
+                                </View>
+                                <View className='list-group-item'>
+                                    <View className='content'>
+                                        <Text className='name'>绵阳</Text>
+                                        <Text className='parentRegion'>四川</Text>
+                                    </View>
+                                </View>
+                            </View>
+                        </View>
+                        <View  className="list-group" id='firstE' ref='firstE'>
+                            <View className="list-group-title">E</View>
                             <View className='city-list-Item'>
                                 <View className='list-group-item'>
                                     <View className='content'>
@@ -180,6 +186,7 @@ export default class Position extends Component {
                     <View className="item" data-id='firstB'  onClick={this.moveScroll.bind(this)}>B</View>
                     <View className="item" data-id='firstC'  onClick={this.moveScroll.bind(this)}>C</View>
                     <View className="item" data-id='firstD'  onClick={this.moveScroll.bind(this)}>D</View>
+                    <View className="item" data-id='firstE'  onClick={this.moveScroll.bind(this)}>E</View>
                 </View>
             </View>
         )
