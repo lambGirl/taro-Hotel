@@ -100,3 +100,50 @@ page{
     font-size: 24px;
   }
 }
+
+.city-search{
+  width: 94%;
+  margin: 20px auto 20px auto;
+  background: #fff;
+  height: 70px;
+  line-height: 70px;
+  box-sizing: border-box;
+  padding: 0 15px;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  .icon-search{
+    font-size: 24px;
+    width: 54px;
+    height:100%;
+    color:#949494;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .search-icon{
+      width: 24px;
+      height: 24px;
+      background: url("../../asset/img/btn_search.png") no-repeat;
+      background-size: 100% 100%;
+    }
+  }
+  .icon-close{
+    height:100%;
+    position: absolute;
+    right:0;
+    width: 80px;
+    text-align: center;
+    display: inline-block;
+    color:#CCCCCC;
+  }
+  input{
+    height: 100%;
+    border:none;
+    outline: none;
+    font-size: 26px;
+    padding-left:4px;
+    width: 90%;
+  }
+}

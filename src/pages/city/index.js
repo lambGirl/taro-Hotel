@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, ScrollView, Text} from '@tarojs/components'
+import { View, ScrollView, Text, Input} from '@tarojs/components'
 import { TzHeader } from '../../common'
 import { connect } from '@tarojs/redux';
 import './index.less'
@@ -7,6 +7,7 @@ import './index.less'
 @connect(({city}) => ({
    ...city,
 }))
+
 export default class Position extends Component {
     config = {
         enablePullDownRefresh:false,
@@ -17,7 +18,8 @@ export default class Position extends Component {
         super(props);
         this.state = {
             viewId:'',
-            scrollTop:0
+            scrollTop:0,
+            env: process.env.TARO_ENV
         }
     }
 
@@ -30,9 +32,9 @@ export default class Position extends Component {
     }
     moveScroll(e){
         //console.log("e", e);
-        let { id } =  e.target.dataset;
+        let { id } =  e.target.dataset, { env } =  this.state;
         // 如果是小程序环境
-        if(process.env.TARO_ENV === 'weapp'){
+        if(env === 'weapp'){
           this.setState({
             "viewId": id
           });
@@ -49,11 +51,19 @@ export default class Position extends Component {
     }
 
     render () {
-        let { cityList, shortcutList } =  this.props;
+        let { cityList, shortcutList } =  this.props, { env } =  this.state;
         //console.log("this.props", cityList);
         return (
             <View>
-                <TzHeader title='选择城市' mode='white' type={process.env.TARO_ENV} />
+                <TzHeader title='选择城市' mode='white' type={env} />
+                <View  className="city-search">
+                    <View className="icon-search">
+                        <Text className="search-icon"></Text>
+                    </View>
+                    <Input ref="search"
+                           name="search"
+                           placeholder='成都，chengdu，cd'/>
+                </View>
                 <ScrollView className='cityList'
                             scrollY
                             scrollWithAnimation={true}
