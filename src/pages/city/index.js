@@ -17,16 +17,16 @@ export default class Position extends Component {
         super(props);
         this.state = {
             viewId:'',
-            scrollTop: 0
+            scrollTop:0
         }
     }
 
     componentDidMount () {
         //console.log("22222");
-       /* this.props.dispatch({
+        this.props.dispatch({
             type:'city/fetchCity',
             payload:{}
-        })*/
+        })
     }
     moveScroll(e){
         //console.log("e", e);
@@ -35,158 +35,71 @@ export default class Position extends Component {
         if(process.env.TARO_ENV === 'weapp'){
           this.setState({
             "viewId": id
-          },()=>{
-            console.log("viewId", this.state.viewId)
           });
         }
-        console.log(this.refs[id], id);
+
         //如果是其他环境
+        this.setState({
+            scrollTop: this.refs[id].vnode.dom.offsetTop-44
+        })
+    }
+
+    getAddress(item){
+        console.log("item", item);
     }
 
     render () {
         let { cityList, shortcutList } =  this.props;
-        //console.log("this.props", this.props);
+        //console.log("this.props", cityList);
         return (
             <View>
                 <TzHeader title='选择城市' mode='white' type={process.env.TARO_ENV} />
                 <ScrollView className='cityList'
                             scrollY
-                            scrollWithAnimation
+                            scrollWithAnimation={true}
                             scrollTop={this.state.scrollTop}
                             scrollIntoView ={this.state.viewId}
                             style='height:500px'>
                     <View className='citylist-content'>
-                        <View  className="list-group" id='dw'>
+                        <View  className="list-group" id='dw'  ref='dw'>
                             <View className="list-group-title" style={{"color":'#707070'}}>当前定位城市</View>
                             <View className='positionAdress'>
                                 <View>成都</View>
                                 <View className='icon'><View className="locationIocn"></View></View>
                             </View>
                         </View>
-                        <View  className="list-group" ref='firstA' id='firstA'>
-                            <View className="list-group-title">A</View>
-                            <View className='city-list-Item'>
-                                <View className='list-group-item'>
-                                    <View className='content'>
-                                        <Text className='name'>绵阳</Text>
-                                        <Text className='parentRegion'>四川</Text>
+                        {
+                            cityList.map((itemList,ParentIndex)=>{
+                                return <View  key={'cityList'+ParentIndex} className="list-group" ref={`first${itemList.title}`} id={`first${itemList.title}`} >
+                                    <View className="list-group-title">{itemList.title}</View>
+                                    <View className='city-list-Item'>
+                                        {
+                                            itemList.items.map((item,sonIndex)=>{
+                                                return <View className='list-group-item' key={'cityList'+ParentIndex+"itemList"+sonIndex} onClick={this.getAddress.bind(this, item)}>
+                                                    <View className='content'>
+                                                        <Text className='name'>{item.cityName}</Text>
+                                                        <Text className='parentRegion'>{item.parentRegionName}</Text>
+                                                    </View>
+                                                </View>
+                                            })
+                                        }
                                     </View>
                                 </View>
-                                <View className='list-group-item'>
-                                    <View className='content'>
-                                        <Text className='name'>绵阳</Text>
-                                        <Text className='parentRegion'>四川</Text>
-                                    </View>
-                                </View>
-                                <View className='list-group-item'>
-                                    <View className='content'>
-                                        <Text className='name'>绵阳</Text>
-                                        <Text className='parentRegion'>四川</Text>
-                                    </View>
-                                </View>
-                            </View>
-                        </View>
-                        <View  className="list-group" id='firstB' ref='firstB'>
-                            <View className="list-group-title" >B</View>
-                            <View className='city-list-Item'>
-                                <View className='list-group-item'>
-                                    <View className='content'>
-                                        <Text className='name'>绵阳</Text>
-                                        <Text className='parentRegion'>四川</Text>
-                                    </View>
-                                </View>
-                                <View className='list-group-item'>
-                                    <View className='content'>
-                                        <Text className='name'>绵阳</Text>
-                                        <Text className='parentRegion'>四川</Text>
-                                    </View>
-                                </View>
-                                <View className='list-group-item'>
-                                    <View className='content'>
-                                        <Text className='name'>绵阳</Text>
-                                        <Text className='parentRegion'>四川</Text>
-                                    </View>
-                                </View>
-                            </View>
-                        </View>
-                        <View  className="list-group">
-                            <View className="list-group-title" id="firstC" ref='firstC'>C</View>
-                            <View className='city-list-Item'>
-                                <View className='list-group-item'>
-                                    <View className='content'>
-                                        <Text className='name'>绵阳</Text>
-                                        <Text className='parentRegion'>四川</Text>
-                                    </View>
-                                </View>
-                                <View className='list-group-item'>
-                                    <View className='content'>
-                                        <Text className='name'>绵阳</Text>
-                                        <Text className='parentRegion'>四川</Text>
-                                    </View>
-                                </View>
-                                <View className='list-group-item'>
-                                    <View className='content'>
-                                        <Text className='name'>绵阳</Text>
-                                        <Text className='parentRegion'>四川</Text>
-                                    </View>
-                                </View>
-                            </View>
-                        </View>
-                        <View  className="list-group" id='firstD' ref='firstD'>
-                            <View className="list-group-title">D</View>
-                            <View className='city-list-Item'>
-                                <View className='list-group-item'>
-                                    <View className='content'>
-                                        <Text className='name'>绵阳</Text>
-                                        <Text className='parentRegion'>四川</Text>
-                                    </View>
-                                </View>
-                                <View className='list-group-item'>
-                                    <View className='content'>
-                                        <Text className='name'>绵阳</Text>
-                                        <Text className='parentRegion'>四川</Text>
-                                    </View>
-                                </View>
-                                <View className='list-group-item'>
-                                    <View className='content'>
-                                        <Text className='name'>绵阳</Text>
-                                        <Text className='parentRegion'>四川</Text>
-                                    </View>
-                                </View>
-                            </View>
-                        </View>
-                        <View  className="list-group" id='firstE' ref='firstE'>
-                            <View className="list-group-title">E</View>
-                            <View className='city-list-Item'>
-                                <View className='list-group-item'>
-                                    <View className='content'>
-                                        <Text className='name'>绵阳</Text>
-                                        <Text className='parentRegion'>四川</Text>
-                                    </View>
-                                </View>
-                                <View className='list-group-item'>
-                                    <View className='content'>
-                                        <Text className='name'>绵阳</Text>
-                                        <Text className='parentRegion'>四川</Text>
-                                    </View>
-                                </View>
-                                <View className='list-group-item'>
-                                    <View className='content'>
-                                        <Text className='name'>绵阳</Text>
-                                        <Text className='parentRegion'>四川</Text>
-                                    </View>
-                                </View>
-                            </View>
-                        </View>
+                            })
+                        }
+
                     </View>
                 </ScrollView>
                 <View className="list-shortcut">
-                    <View className="item" data-id='dw' onClick={this.moveScroll.bind(this)}>定位</View>
-                    <View className="item" data-id='firstA'  onClick={this.moveScroll.bind(this)}>A</View>
-                    <View className="item" data-id='firstB'  onClick={this.moveScroll.bind(this)}>B</View>
-                    <View className="item" data-id='firstC'  onClick={this.moveScroll.bind(this)}>C</View>
-                    <View className="item" data-id='firstD'  onClick={this.moveScroll.bind(this)}>D</View>
-                    <View className="item" data-id='firstE'  onClick={this.moveScroll.bind(this)}>E</View>
+                    {
+                        shortcutList.map((item , index)=>{
+                            if(item === "定位"){
+                                return <View className="item" data-id='dw' onClick={this.moveScroll.bind(this)}>{item}</View>
+                            }
+                            return <View className="item" data-id={`first${item}`}  onClick={this.moveScroll.bind(this)}>{item}</View>
+                        })
+                    }
+
                 </View>
             </View>
         )
