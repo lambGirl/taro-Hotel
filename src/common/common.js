@@ -12,6 +12,7 @@ class Displacementer {
     this.isTap=false;
     this.cacheMoveX=cacheMoveX||0;
     this.cacheMoveY=cacheMoveY||0;
+    this.frozen={x:0,y:0}
   }
   init(x,y){
       this.beforX=Number(x);
@@ -22,9 +23,11 @@ class Displacementer {
       this.moveDirection='';
       this.isTap=false;
   }
+  frozenXY(xORy){this.frozen[xORy.toLowerCase()]=this["move"+xORy.toUpperCase()]}//冻结moveX/moveY
+  thawXY(xORy){this.frozen[xORy.toLowerCase()]=""}//解冻moveX/moveY
   getData(x,y){
-    let moveX=Number(x)-this.beforX,
-        moveY=Number(y)-this.beforY,
+    let moveX=this.frozen.x||(Number(x)-this.beforX),
+        moveY=this.frozen.y||(Number(y)-this.beforY),
         moveObj={x:0,y:0}
     ;
 
@@ -61,8 +64,10 @@ class Displacementer {
     }
   }
   save(x,y){
-    this.cacheMoveX=x||(this.cacheMoveX+this.moveX);
-    this.cacheMoveY=y||(this.cacheMoveY+this.moveY);
+    this.cacheMoveX=x!='undefined'?x:(this.cacheMoveX+this.moveX);
+    this.cacheMoveY=y!='undefined'?y:(this.cacheMoveY+this.moveY);
+    this.moveX=0;
+    this.moveY=0;
     return {
       cacheMoveX:this.cacheMoveX,
       cacheMoveY:this.cacheMoveY,

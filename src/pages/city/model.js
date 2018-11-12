@@ -36,6 +36,7 @@ export default {
         setInitCity(state, {payload}){
           //  console.log(action);
             //设置城市
+            state.citys =  payload.citys;
             state.cityList = redetailSingleData(payload.citys);
             //设置右边的悬浮条
             state.shortcutList =  shortcutListData(state.cityList);

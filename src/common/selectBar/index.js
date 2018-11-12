@@ -53,7 +53,7 @@ export default class SelectBar extends Component{
     }
 
     render(){
-        let { contentShow, selectConfig, defaultHeight } = this.state, { outHeight } =  this.state,
+        let { contentShow, selectConfig, defaultHeight } = this.state, { outHeight } =  this.props,
             top =  Taro.pxTransform(defaultHeight+outHeight);
         return <View className='selectBarContent'>
             <View className='selectBar'>
@@ -77,7 +77,7 @@ export default class SelectBar extends Component{
 
             {contentShow?<View className={classnames("content")}  style={{"top": top}}>
                 <View className='model' onClick={this.barshowhidden.bind(this, false,'')}></View>
-                <View className='container'>
+                <View className='selectContent-container'>
                     <View className='mainContent'></View>
                     {selectConfig.currentIndex !== ""&&selectConfig.barData[selectConfig.currentIndex].footer?<View className='btns'>
                         <View>重置</View>

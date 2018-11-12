@@ -10,8 +10,10 @@ export default (options = { method: 'GET', data: {} }) => {
   if (!noConsole) {
     console.log(`${new Date().toLocaleString()}【 M=${options.url} 】P=${JSON.stringify(options.data)}`);
   }
+  //判断是不是微信环境,如果是微信环境则全地址
+
   return Taro.request({
-    url: options.url,
+    url: process.env.TARO_ENV==="weapp"?baseUrl+options.url:options.url,
     data: {
       ...request_data,
       ...options.data
