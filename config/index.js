@@ -69,7 +69,8 @@ const config = {
                 "changeOrigin": true,
                 "pathRewrite": { "^/api" : "/api" }
             },
-        }
+        },
+        host:'0.0.0.0'
     }
   }
 }

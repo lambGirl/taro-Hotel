@@ -68,7 +68,9 @@ export default class Orderdetail extends Component {
         let { tabActive, listData, page, total} = this.state;
         return (
             <View className='orderDetail-page'>
-                <TzHeader  title='酒店订单' mode='gradient' type={process.env.TARO_ENV} onClick={this.headerLeftClick.bind(this)} />
+                <TzHeader   mode='gradient' type={process.env.TARO_ENV} onClick={this.headerLeftClick.bind(this)}>
+                    酒店订单
+                </TzHeader>
                 <TabItem tabItem={["全部","未使用","已使用"]} onClick={this.tabPropsClick.bind(this)} tabActive={tabActive}>
                     {tabActive == 0?<Scroll
                         page={page}

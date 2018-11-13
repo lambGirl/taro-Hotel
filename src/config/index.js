@@ -1,5 +1,5 @@
 // 请求连接前缀
-export const baseUrl = 'https://wap.tz12306.com';
+export const baseUrl = 'https://wap.scqcp.com';
 
 // 输出日志信息
 export const noConsole = false;

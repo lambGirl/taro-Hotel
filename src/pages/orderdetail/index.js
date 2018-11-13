@@ -49,7 +49,7 @@ export default class Orderdetail extends Component {
 
     return (
       <View className='orderdetail-page'>
-         <TzHeader  title='订单详情' mode='gradient' type={process.env.TARO_ENV} />
+          <TzHeader  mode='gradient' type={process.env.TARO_ENV} >订单详情</TzHeader>
          <ScrollView
               className='scrollview'
               scrollY

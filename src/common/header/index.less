@@ -15,7 +15,10 @@
     background:#fff;
     color:#3E3E3E;
   }
-
+  &.h5-header-whiteBlue,&.weapp-header-whiteBlue{
+    background: #fff;
+    color:#3FABF6;
+  }
   &.weapp-header{
     padding-top: 40px;
   }
@@ -54,14 +57,23 @@
         background-size: 100%;
         vertical-align: center;
       }
+      .headerleftIconWhiteBlue{
+        display: inline-block;
+        background: url("../../asset/img/btn_whiteBlue-back@2x.png") no-repeat;
+        width: 24px;
+        height: 42px;
+        background-size: 100%;
+        vertical-align: center;
+      }
     }
     .center-header{
       position: absolute;
       width: 100%;
       height: 100%;
-      line-height: 90px;
-      text-align: center;
+      display: flex;
+      align-items: center;
       box-sizing: border-box;
+      justify-content: center;
     }
     .right-header{
       position: absolute;
@@ -72,6 +84,7 @@
       text-align: right;
       padding-right: 30px;
       box-sizing: border-box;
+      font-size: 32px;
       z-index:1000;
     }
   }

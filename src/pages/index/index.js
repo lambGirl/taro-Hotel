@@ -47,9 +47,8 @@ class Index extends Component {
   queryHotel(){
       // 跳转到目的页面，打开新页面
       Taro.navigateTo({
-          url: '/pages/city/index'
+          url: '/pages/hotellist/index'
       })
-
   }
   goOrderList(e){
     // 跳转到目的页面，打开新页面
@@ -63,7 +62,9 @@ class Index extends Component {
   render () {
     return (
       <View className='container'>
-        <TzHeader title='首页' mode='white' type={process.env.TARO_ENV} />
+          <TzHeader mode='white' type={process.env.TARO_ENV} >
+              首页
+          </TzHeader>
         <Image className="index-banner" mode="aspectFill" src={config.imgDomain+"/images/hotel_banner_01.png"}/>
         <View className="pd-15">
           <View className="index-form">

@@ -35,6 +35,7 @@ import './index.less'
         switch(mode){
             case 'white':Icon =  "Black"; break;
             case 'gradient':Icon =  "White"; break;
+            case 'whiteBlue':Icon =  "WhiteBlue"; break;
         }
         return Icon
     }
@@ -50,7 +51,7 @@ import './index.less'
     }
 
     render(){
-        let { title, type, mode } =  this.props, { headerHeight } =  this.state;
+        let { title, type, mode, rightText } =  this.props, { headerHeight } =  this.state;
         let leftIcon =  this.leftIcon(mode), styles={
             "paddingTop":Taro.pxTransform(headerHeight)
         };
@@ -66,8 +67,10 @@ import './index.less'
                     <View className='left-header' onClick={this.leftPropsClick.bind(this)}>
                         <Text className={classnames(`headerleftIcon${leftIcon}`)}></Text>
                     </View>
-                    <View className='center-header'>{title}</View>
-                    <View className='right-header'></View>
+                    <View className='center-header'>{this.props.children}</View>
+                    <View className='right-header'>
+                        {rightText||''}
+                    </View>
                 </View>
         </View>
     }

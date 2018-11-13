@@ -307,7 +307,37 @@ const baseUtil = {
             };break;
         }
         return detail;
+    },
+    filterData(item, v){
+        let hot1 = '', hot = '' , hotc = '';
+        if ( (item.shortName.indexOf(v) === 0 && item.shortName.length === v.length) || item.cityName.indexOf(v) === 0 ) {
+            hot = item.cityName.substr(0, v.length)
+            hotc = item.cityName.substr(v.length, item.cityName.length)
+            hot1 = ""
+        } else if ( item.cityName.indexOf(v) !== 0 && item.cityName.indexOf(v) !== -1 ) {
+            hot1 = item.cityName.substr(0, item.cityName.indexOf(v));
+            hot = item.cityName.substr(item.cityName.indexOf(v), v.length);
+            hotc = item.cityName.substr(item.cityName.indexOf(v) + v.length, item.cityName.length);
+        } else if ( item.fullName === v ) {
+            hotc = "";
+            hot = item.cityName
+            hot1 = "";
+        } else if ( item.fullName.indexOf(v) !== -1 ) {
+            hotc = item.cityName;
+            hot = "";
+            hot1 = ""
+        } else {
+            hotc = item.cityName
+            hot = "";
+            hot1 = "";
+        }
+        return {
+            hotc,
+            hot,
+            hot1
+        }
     }
+
 }
 
 export {
