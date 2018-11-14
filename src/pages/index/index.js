@@ -1,8 +1,8 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text,Image} from '@tarojs/components'
 import { connect } from '@tarojs/redux'
-import { AtButton ,AtInput} from 'taro-ui'
-import {BSTSlider,BSTFlexbox}from '../../common/BST-trao-components/index'
+import { AtButton ,AtInput,AtIcon} from 'taro-ui'
+// import {BSTSlider}from '../../common/BST-trao-components/index'
 import {TzHeader} from "../../common"
 import config from "../../config/index"
 
@@ -19,7 +19,7 @@ class Index extends Component {
   constructor(props){
       super(props);
       this.state={
-        hotelKeyWord:"dsadada",
+        hotelKeyWord:"",
         sliderScale:[
           {label:"10块",value:10},
           {label:"50块",value:50},
@@ -45,10 +45,9 @@ class Index extends Component {
 
   componentDidHide () { }
   queryHotel(){
-      // 跳转到目的页面，打开新页面
-      Taro.navigateTo({
-          url: '/pages/hotellist/index'
-      })
+    Taro.navigateTo({
+      url: '/pages/hotellist/index'
+    })
   }
   goOrderList(e){
     // 跳转到目的页面，打开新页面
@@ -59,27 +58,35 @@ class Index extends Component {
   hotelInputChange(value){
     // this.setState({hotelKeyWord:value});
   }
+
+  //选择城市
+  chooseCity(){
+     Taro.navigateTo({
+         url: '/pages/city/index'
+     })
+  }
+
   render () {
     return (
       <View className='container'>
-          <TzHeader mode='white' type={process.env.TARO_ENV} >
-              首页
-          </TzHeader>
+        <TzHeader title='首页' mode='white' type={process.env.TARO_ENV} />
         <Image className="index-banner" mode="aspectFill" src={config.imgDomain+"/images/hotel_banner_01.png"}/>
         <View className="pd-15">
           <View className="index-form">
-            <BSTFlexbox end="100px" boxClass="index-form-line" endClass="index-line-end text-r">
-              <View className="index-address">
+            <View  className="bst-flex-box index-form-line">
+              <View className="index-address bst-flex-box1" onClick={this.chooseCity.bind(this)}>
                 <View className="index-address-name">{"久宜祥酒店附近"}</View>
                 <View className="second-line">{"成都市武侯区锦城大道附近"}</View>
               </View>
-              <View className="index-location">
-                <Image mode="aspectFill" src={config.imgDomain+"/images/location-icon.png"}/>
-                <View>我的位置</View>
+              <View className="index-location index-line-end bst-flex-box2">
+                <View>
+                  <Image mode="aspectFill" src={config.imgDomain+"/images/location-icon.png"}/>
+                  <View>我的位置</View>
+                </View>
               </View>
-            </BSTFlexbox>
-            <BSTFlexbox  end="100px" boxClass="index-form-line"  endClass="index-line-end text-r">
-              <View className="text-ellipsis">
+            </View>
+            <View   className="bst-flex-box index-form-line">
+              <View className="text-ellipsis  bst-flex-box1">
                 <View className="index-time-start">
                   <View><Text className="line-date-number">9.14</Text><Text>今天</Text></View>
                   <View className="second-line second-line-icon-left">入住时间</View>
@@ -89,8 +96,8 @@ class Index extends Component {
                   <View  className="second-line second-line-icon-right">离店时间</View>
                 </View>
               </View>
-              <View className="line-date-end"><Text>共1晚</Text></View>
-            </BSTFlexbox>
+              <View className="line-date-end  bst-flex-box2 text-r"><Text>共1晚</Text></View>
+            </View>
             <AtInput
               className="index-form-line index-hotel-name"
               clear
@@ -98,19 +105,12 @@ class Index extends Component {
               value={this.state.hotelKeyWord}
               onChange={this.hotelInputChange.bind(this)}
             />
-            <AtInput className="index-form-line index-hotel-start" clear="clear" placeholder={"价格/星级"}/>
+            <AtInput className="index-form-line index-hotel-start" clear placeholder={"价格/星级"}/>
             <AtButton circle className="hotel-button index-submit" onClick={this.queryHotel.bind(this)}>查找酒店</AtButton>
             <AtButton circle onClick={this.goOrderList.bind(this)}>进入订单列表</AtButton>
           </View>
         </View>
-
-        <Image mode="aspectFill"  className="index-logo" src={config.imgDomain+"/images/tz-logo.png"}/>
-
-
-
-        {/*<BSTSlider type="range" mode='custom' scale={this.state.sliderScale} onChange={this.sliderChange} />*/}
-        {/*<BSTSlider />*/}
-        {/*<View><Text>Hello, World</Text></View>*/}
+        <Image className="index-logo" mode="aspectFill" src={config.imgDomain+"/images/tz-logo.png"}/>
       </View>
     )
   }

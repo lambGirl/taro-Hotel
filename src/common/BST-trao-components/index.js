@@ -6,7 +6,7 @@
  */
 import Taro, { Component } from '@tarojs/taro'
 import { View, Button, Text } from '@tarojs/components';
-import {Displacementer}from '../common'
+import {Displacementer,mergeCssStr,formatCss}from '../common'
 
 import './index.less'
 /*
@@ -231,118 +231,72 @@ class BSTSlider extends Component {
 
   }
 }
-/*双栏弹性盒子*/
-class BSTFlexbox extends Component{
+class BSTHeader extends Component {
   constructor(props){
+    props.boxStyle=props.boxStyle||"";
+    props.leftStyle=props.leftStyle||"";
+    props.centerStyle=props.centerStyle||"";
+    props.backWidth=props.backWidth||"50px";
+    props.backZindex=props.backZindex||"5";
+    props.noBack=props.hasOwnProperty("noBack");
     super(props);
-    this.state = {
-      startStyle:"",
-      endStyle:"",
-      startNew:props.start||"",
-      endNew:props.end||"",
-      isOpen:true,
-      _start:props.start||"",
-      _end:props.end||"",
-    };
-    this.state.startStyle=Object.assign(this.getWidth("start",props),props.startStyle||{});
-    this.state.endStyle=Object.assign(this.getWidth("end",props),props.endStyle||{});
+    this.state={
+      height:parseInt(formatCss(props.boxStyle).height)||45,
+      boxPaddingTop:0
+    }
   }
+  componentDidMount(){
+    this.getStateLineHeight()
 
+  }
+  getStateLineHeight(callback){
+    let {height}=this.state;
+    let self=this;
+    switch (Taro.getEnv()){
+      case "WEAPP":
+
+          wx.getSystemInfo({
+            success:function (res) {
+              height += res.statusBarHeight;
+              self.setState({
+                height:  height,
+                boxPaddingTop:res.statusBarHeight+"px"
+              });
+              callback&&callback(height)
+            }
+          });
+        break;
+    }
+  }
   render(){
-    var props=this.props;
-    return <View className={this.getClass()} style={props.style}>
-     {/* <View style={this.state.startStyle} className={props.startClass||''} >
-        {this.props.children[0]}
-      </View>
-      <View style={this.state.endStyle} className ={props.endClass||''} >
-        {this.props.children[1]}
-      </View>*/}
-    </View>
+    let {boxStyle,leftStyle,centerStyle,backWidth,backZindex,noBack}=this.props;
+    return <View className="bst-nav-bar" style={mergeCssStr(
+                boxStyle||"",
+                "height:"+this.state.height+"px;padding-top:"+this.state.boxPaddingTop
+            )}>
+                {
+                  !noBack&&<View
+                    className="bst-nav-left"
+                    style={mergeCssStr(leftStyle,"width:"+backWidth+";margin-right:-"+backWidth+";z-index:"+backZindex)}
+                    onTap={this.navback.bind(this)}
+                  > </View>
+              }
+              <View
+                className="bst-nav-center"
+                style={mergeCssStr("padding-right:"+backWidth,centerStyle,"padding-left:"+backWidth)}
+              >{this.props.children}</View>
+            </View>
   }
-
-  getClass(){
-    var
-      props=this.props,
-      classStr=(props.boxClass||"")+(' flex-box'+(props.vertical==='v'?'v':''));
-    return classStr
-  }
-
-  getWidth(autoPsiton,pr){
-    var
-      props=this.props||pr,
-      styleObj={width:"auto"},
-      start=this.state.startNew||"auto",
-      end=this.state.endNew||"auto",
-      noAutoZIndex=props.noAutoZIndex||5,
-      isVertical=props.vertical==='v'?props.vertical:false;
-    if(!isVertical){//如果水平排列
-      if(start=="auto"&&end!="auto"){
-        if(autoPsiton=="start"){
-          styleObj.width="100%";
-          styleObj.paddingRight=end;
-          styleObj.marginRight="-"+end;
-        }else {
-          styleObj.width=end;
-          styleObj.zIndex=noAutoZIndex;
-        }
-      }else if(start!="auto"&&end=="auto"){
-        if(autoPsiton=="end"){
-          styleObj.width="100%";
-          styleObj.paddingLeft=start;
-          styleObj.marginLeft="-"+start;
-        }else {
-          styleObj.width=start;
-          styleObj.zIndex=noAutoZIndex;
-        }
-
-      }else {return false}
-    }else if(isVertical){//如果垂直排列
-      if(start=="auto"&&end!="auto"){
-        if(autoPsiton=="start"){
-          styleObj.height="100%";
-          styleObj.paddingBottom=end;
-          styleObj.marginBottom="-"+end;
-        }else {
-          styleObj.height=end;
-          styleObj.zIndex=noAutoZIndex;
-        }
-      }else if(start!="auto"&&end=="auto"){
-        if(autoPsiton=="end"){
-          styleObj.height="100%";
-          styleObj.paddingTop=start;
-          styleObj.marginTop="-"+start;
-        }else {
-          styleObj.height=start;
-          styleObj.zIndex=noAutoZIndex;
-        }
-
-      }else {return false}
+  navback(){
+    let
+      backFun=this.props.backFun,
+      flag=false
+    ;
+    if(backFun){
+      flag=this.props.backFun()
     }
-
-    return styleObj
-  }
-  open(){
-    if(this.state._start){
-      this.state.startNew=this.state._start
-    }else {
-      this.state.endNew= this.state._end
-    }
-    this.init()
-  }
-  shrink(){
-    if(this.state._start){
-      this.state.startNew="0px"
-    }else {
-      this.state.endNew="0px"
-    }
-    this.init()
-  }
-  init(pr){
-    this.setState({
-      startStyle: Object.assign(this.getWidth("start",pr),pr.startStyle||this.props.startStyle||{}),
-      endStyle:  Object.assign(this.getWidth("end",pr),pr.endStyle||this.props.endStyle||{}),
-    });
+    !flag&&Taro.navigateBack()
   }
 }
 
-export { BSTSlider,BSTFlexbox}
+export { BSTSlider,BSTHeader}

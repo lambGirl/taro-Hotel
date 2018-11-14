@@ -5,7 +5,7 @@ import OrderDetailStatus from './orderDetailStatus'
 import TzCardBox from './cardBox'
 import Scroll from "./scroll"
 import SelectBar from './selectBar'
-
+import HotelListItem from './hostlistItem'
 export {
     TzHeader,
     OrderItem,
@@ -13,5 +13,6 @@ export {
     OrderDetailStatus,
     TzCardBox,
     Scroll,
-    SelectBar
+    SelectBar,
+    HotelListItem
 }

@@ -1,3 +1,4 @@
+@import "../../asset/css/config";
 page{
   height:100%;
   background: #f5f5f5;
@@ -71,7 +72,7 @@ page{
           width: 35px;
           height: 35px;
           display: inline-block;
-          background-image: url(../../asset/img/gai_location.png);
+          background-image: url('@{globalAddress}/gai_location.png');
           background-repeat: no-repeat;
           background-size: 100%;
         }
@@ -126,7 +127,7 @@ page{
     .search-icon{
       width: 24px;
       height: 24px;
-      background: url("../../asset/img/btn_search.png") no-repeat;
+      background: url("@{globalAddress}/btn_search.png") no-repeat;
       background-size: 100% 100%;
     }
   }
@@ -159,7 +160,7 @@ page{
     .search-icon-clear{
       width: 24px;
       height: 24px;
-      background: url("../../asset/img/delete.png") no-repeat;
+      background: url("@{globalAddress}/delete.png") no-repeat;
       background-size: 100% 100%;
     }
   }

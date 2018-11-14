@@ -1,0 +1,114 @@
+.hotelList-listItem{
+  height: 260px;
+  display: flex;
+  box-sizing: border-box;
+  padding: 20px 0;
+  background: #fff;
+  border-bottom: 1px solid #E6E6E6;
+  .image{
+    width: 180px;
+    height: 220px;
+    background: #ccc;
+  }
+
+  .rightcontent{
+    width: 72%;
+    display: flex;
+    padding-left:20px;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: space-between;
+    .top{
+      .title{
+        font-size:34px;
+        color:#3E3E3E;
+        overflow: hidden;
+        white-space:nowrap;
+        text-overflow: ellipsis;
+      }
+      .scoreType{
+        display: flex;
+        align-items: center;
+        >view:first-child, >div:first-child{
+          font-size: 42px;
+          line-height: 48px;
+          color:rgba(56,168,246,1);
+          background:linear-gradient(0deg,rgba(56,168,246,1) 0%, rgba(90,193,247,1) 100%);
+          -webkit-background-clip:text;
+          -webkit-text-fill-color:transparent;
+          text, span{
+            font-size: 22px;
+          }
+        }
+        .common{
+          font-size: 24px;
+          margin-left: 20px;
+        }
+
+        //高端
+        .level-HighGrade{
+          width:92px;
+          height:40px;
+          background:linear-gradient(180deg,rgba(236,201,115,1),rgba(253,236,193,1));
+          border-radius:2px;
+          line-height: 40px;
+          text-align: center;
+          span, text{
+            color:rgba(181,143,49,1);
+            background:linear-gradient(0deg,rgba(181,143,49,1) 0%, rgba(218,188,115,1) 100%);
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+          }
+        }
+
+        //豪华
+        .level-luxury{
+          width:92px;
+          height:40px;
+          border-radius:2px;
+          line-height: 40px;
+          background:linear-gradient(0deg,rgba(51,51,51,1),rgba(77,77,77,1));
+          border-radius:2px;
+          text-align: center;
+          span, text{
+            background:linear-gradient(0deg,rgba(211,170,72,1) 0%, rgba(244,220,105,1) 100%);
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+            color:rgba(246,206,85,1);
+          }
+        }
+
+        //一般
+        .level-general{
+          font-size:24px;
+          color:#999999;
+        }
+      }
+      .labelType{
+        display: flex;
+        view,div{
+          /*width: 100px;*/
+          padding: 2px;
+          /*  height:38px;*/
+          border:2px solid #F6DA9A;
+          border-radius:4px;
+          font-size:20px;
+          white-space: nowrap;
+          color:#D7AE4D;
+          line-height: 32px;
+          text-align: center;
+          margin-right:10px;
+        }
+      }
+    }
+    .bottom{
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+    }
+  }
+}
+
+.hotelList-listItem:last-child{
+  border-bottom: none;
+}

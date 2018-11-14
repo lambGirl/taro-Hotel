@@ -74,4 +74,46 @@ class Displacementer {
     }
   }
 }
-export {Displacementer}
+function formatCss(css) {
+  if(!css){
+    console.log("format css parameter error!");
+    return {}
+  }
+  let styleObj={},cA;
+  if(typeof css =="string"){
+      cA=css.split(";").filter(function (f) {
+        return /^\S+:\S+$/.test(f)
+      });
+  }else {
+    cA=[];
+    Object.keys(css).forEach(function (key) {
+      if(key!=""){
+        cA.push(key+":"+css[key])
+      }
+    })
+  }
+  cA.forEach(function (f) {
+    let fAry=f.split(":"),key=fAry[0].split("-").map(function (keyF,i) {
+      let kff=keyF;
+      if(i!=0){
+        kff=keyF.slice(0,1).toUpperCase()+keyF.slice(1)
+      }
+      return kff
+    }).join("");
+    styleObj[key]=fAry[1]
+  });
+  return styleObj
+}
+function mergeCssStr() {
+  return formatCss(Object.assign.apply({},[].map.call(arguments,function (cssstr) {
+    let obj={};
+    cssstr.split(";").forEach(function (f) {
+      if(/^\S+:\S+$/.test(f)){
+        let fa=f.split(":");
+        obj[fa[0]]=fa[1]
+      }
+    });
+    return obj
+  })))
+}
+export {Displacementer,formatCss,mergeCssStr}

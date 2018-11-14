@@ -106,7 +106,9 @@ export default class Position extends Component {
        // console.log("this.props", viewId);
         return (
             <View>
-                <TzHeader title='选择城市' mode='white' type={env} />
+                <TzHeader mode='white' type={env} >
+                    选择城市
+                </TzHeader>
                 <View  className="city-search" ref="searchBar">
                     <View className="icon-search">
                         <Text className="search-icon"></Text>

@@ -31,6 +31,24 @@
 }
 
 
+page{
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  font-size: 28px;
+}
+page>view,page>scroll-view{
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: #f6f5f6;
+}
+.noScrollBar::-webkit-scrollbar{width:0;height:0}
+.container {
+  height: 100%;
+}
+
 div,view,View{
   box-sizing: border-box;
 }
@@ -59,6 +77,14 @@ div,view,View{
     white-space: nowrap;
   }
 }
-
+/*flex-box*/
+.bst-flex-box{
+  white-space: nowrap;
+}
+.bst-flex-box>div,.bst-flex-box>view,.bst-flex-box>View{
+  display: inline-block;
+  vertical-align: middle;
+  box-sizing: border-box;
+}
 
 
