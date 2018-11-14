@@ -5,7 +5,6 @@ import { TzHeader, SelectBar,HotelListItem } from "../../common"
 import './index.less';
 import classnames from 'classnames'
 import Scroll from "../../common/scroll"
-
 export default class HotelList extends Component{
 
     config = {
@@ -34,6 +33,8 @@ export default class HotelList extends Component{
                 }
             })
         }
+
+       // console.log("1111111", this.refs.header.vnode.dom.offsetHeight, this.refs.SelectBar.vnode.dom);
     }
 
     onScrollToLower(e){
@@ -42,8 +43,9 @@ export default class HotelList extends Component{
 
     render(){
         let { outHeight, page, total } =  this.state;
+
         return <View>
-            <TzHeader   mode='whiteBlue' type={process.env.TARO_ENV} rightText='地图'>
+            <TzHeader   mode='whiteBlue' type={process.env.TARO_ENV} rightText='地图' ref='header'>
                 <View className='timeHeaderSearchBar'>
                     <View className='left-section'>
                         <View className='date-choose'>
@@ -63,7 +65,7 @@ export default class HotelList extends Component{
                     </View>
                 </View>
             </TzHeader>
-            <SelectBar outHeight={outHeight} />
+            <SelectBar outHeight={outHeight} ref='SelectBar'/>
             <Scroll
                 page={page}
                 total={total}

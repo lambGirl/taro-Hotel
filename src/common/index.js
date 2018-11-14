@@ -6,6 +6,7 @@ import TzCardBox from './cardBox'
 import Scroll from "./scroll"
 import SelectBar from './selectBar'
 import HotelListItem from './hostlistItem'
+import Date from './dateModel'
 export {
     TzHeader,
     OrderItem,
@@ -14,5 +15,6 @@ export {
     TzCardBox,
     Scroll,
     SelectBar,
-    HotelListItem
+    HotelListItem,
+    Date
 }

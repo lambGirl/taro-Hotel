@@ -3,7 +3,7 @@ import { View, Text,Image} from '@tarojs/components'
 import { connect } from '@tarojs/redux'
 import { AtButton ,AtInput,AtIcon} from 'taro-ui'
 // import {BSTSlider}from '../../common/BST-trao-components/index'
-import {TzHeader} from "../../common"
+import {TzHeader, Date} from "../../common"
 import config from "../../config/index"
 
 import './index.less'
@@ -111,6 +111,7 @@ class Index extends Component {
           </View>
         </View>
         <Image className="index-logo" mode="aspectFill" src={config.imgDomain+"/images/tz-logo.png"}/>
+        <Date />
       </View>
     )
   }
