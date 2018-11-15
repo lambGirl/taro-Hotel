@@ -1,3 +1,4 @@
+@import "../../asset/css/config";
 .weappH5-date{
   position: fixed;
   width: 100%;
@@ -19,6 +20,21 @@
     background: #fff;
     >view:first-child, >div:first-child{
       height:78px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      color: #1A1A1A;
+      font-size: 34px;
+      .close{
+        position: absolute;
+        right: 31px;
+        width: 25px;
+        height: 25px;
+        background: url("@{globalAddress}/btn_delete@2x.png") no-repeat;
+        background-size: 100% 100%;
+        background-position: center center;
+      }
     }
     >view:last-child, >div:last-child{
       height: calc(100% - 78px);

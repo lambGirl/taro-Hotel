@@ -5,7 +5,7 @@ import classnames from 'classnames';
 import './index.less'
 export default class Date extends Component{
     static  defaultProps ={
-        title:'日期'
+        title:'选择日期'
     }
 
     constructor(props){
@@ -13,20 +13,20 @@ export default class Date extends Component{
     }
 
     componentDidMount(){
-        console.log("dateDetail", this.refs.dateDetail.vnode.dom.clientHeight);
+
     }
 
     render(){
         let { title } =  this.props;
         return <View className='weappH5-date'>
             <View className='model'></View>
-            <View className='content' ref='dateDetail'>
-                <View>
+            <View className='content' >
+                <View  className='header'>
                     <View>{title}</View>
-                    <View>X</View>
+                    <View className='close'></View>
                 </View>
                 <View >
-                    <DateDetail />
+                    <DateDetail  model='dateMiddle'/>
                 </View>
             </View>
         </View>
