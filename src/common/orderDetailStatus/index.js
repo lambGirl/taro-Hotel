@@ -5,6 +5,17 @@ import classnames from 'classnames'
 import './index.less'
 
 class OrderDetailStatus extends Component{
+    static defaultProps = {
+        top:{
+            mangLine:false,
+            singleLine:false,
+            icon:'paying',
+            status:''
+        },
+        orderDetail:{
+            totalPrice: "0.00",
+        }
+    }
 
     render(){
         let {top, orderDetail} = this.props;

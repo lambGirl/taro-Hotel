@@ -54,6 +54,29 @@ Date.daysBetween = function(DateOne,DateTwo){
     var cha = ((Date.parse(OneMonth + '/' + OneDay + '/' + OneYear) - Date.parse(TwoMonth + '/' + TwoDay + '/' + TwoYear)) / 86400000);
     return cha;
 }
+
+Date.prototype.addMilliseconds = function (value) {
+    this.setMilliseconds(this.getMilliseconds() + value);
+    return this;
+};
+Date.prototype.add = function (value) { return this.addMilliseconds(value * 86400000); };
+
+Date.middleDateArray = function(date1, date2){
+    const startDate=Date.parse(date1.replace('/-/g','/'));
+    const endDate=Date.parse(date2.replace('/-/g','/'));
+    let   diffDate=(endDate-startDate) + 1*24*60*60*1000;
+    let   days=diffDate/(1*24*60*60*1000);
+    //开始日期， 差的天数
+    if(!days){
+        return [];
+    }
+    let newDateArray = [];
+
+    for(let  i = 1; i <= days; i++){
+            newDateArray.push(new Date(startDate).add(i).format("yyyy-MM-dd"));
+    }
+    return newDateArray;
+}
 //把时间格式如 2017-02-02-->['2017','2','2']
 Date.StringToArr = function(str){
     let Arr = str.split('-');

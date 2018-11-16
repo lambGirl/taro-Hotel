@@ -81,8 +81,8 @@ export default class Orderdetail extends Component {
                     >
                         <View>
                             {
-                                listData.map((item)=>{
-                                    return  <OrderItem  onClick={this.OrderItemClick.bind(this)} />
+                                listData.map((item,index)=>{
+                                    return  <OrderItem  key={"listData0"+index} onClick={this.OrderItemClick.bind(this)} />
                                 })
                             }
                         </View>
@@ -96,8 +96,8 @@ export default class Orderdetail extends Component {
                     >
                         <View>
                             {
-                                listData.map((item)=>{
-                                    return  <OrderItem  onClick={this.OrderItemClick.bind(this)} />
+                                listData.map((item,index)=>{
+                                    return  <OrderItem key={"listData1"+index}  onClick={this.OrderItemClick.bind(this)} />
                                 })
                             }
                         </View>
@@ -111,8 +111,8 @@ export default class Orderdetail extends Component {
                     >
                         <View>
                             {
-                                listData.map((item)=>{
-                                    return  <OrderItem  onClick={this.OrderItemClick.bind(this)} />
+                                listData.map((item, index)=>{
+                                    return  <OrderItem  key={"listData2"+index} onClick={this.OrderItemClick.bind(this)} />
                                 })
                             }
                         </View>

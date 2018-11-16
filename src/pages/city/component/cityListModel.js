@@ -32,7 +32,7 @@ export default class CityListModel extends Component{
         let  top =  Taro.pxTransform(defaultTop+outHeight);
         let { filterData,noLocal  } =  this.props;
         var v = noLocal,c1 = [], c2 = [], c3 = [];
-        if(filterData.length&&noLocal){
+        if(filterData&&filterData.length&&noLocal){
             filterData.map((item)=>{
                 if (item.cityName.indexOf(v) !== 0 && item.cityName.indexOf(v) !== -1 ) {
                     c2.push(item);

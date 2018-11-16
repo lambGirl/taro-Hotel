@@ -6,11 +6,10 @@ import classNames from 'classnames'
 import './date.less'
 
 class DH extends Component {
+
     static defaultProps = {
         title:'日期选择器Dome',
         defaultDate:['2018-11-15'],
-        startEndDate:['2018-11-15', '2018-11-20'],    //开始时间，结束时间
-        middleDate:['2018-11-16','2018-11-17','2018-11-18','2018-11-19'],  //开始时间与结束时间之间相差的日期
         limitDate:150,
         holidays:[
             {
@@ -39,25 +38,31 @@ class DH extends Component {
         chooseNumber:4,
         type:'more',
         model: 'common', //统一的样式 jpmp: 景区门票
-        sellDetail:[]
+        sellDetail:[],
+        initDate:[]
     }
 
     constructor(props){
         let {FullYear,Month,date} = new Date().getLoactionTime();
         super(props)
         this.state = {
+            startEndDate:[],
+            middleDate:[],
             week:['日','一','二','三','四','五','六'],
             activeDate:[],
             monthArr:this.Leap(FullYear,Month,date),
         }
     }
+    componentWillReceiveProps (nextProps) {
+        let {initDate} = this.props;
+        this.setState({
+            startEndDate:initDate,
+            middleDate: initDate.length===2?Date.middleDateArray(initDate[0], initDate[1]):[]
+        });
+    }
 
     componentWillMount(){
-      //  console.log("props", this.props.holidays);
-        let {FullYear,Month,date} = new Date().getLoactionTime();
-        this.setState({
-            activeDate:this.props.defaultDate
-        });
+
     }
 
     //年处理
@@ -95,10 +100,6 @@ class DH extends Component {
         return tepMnth;
     }
 
-    //月份渲染
-    renderMonth(monthArr){
-
-    }
 
     /*active 算法*/
     _algorithm(date){
@@ -112,51 +113,7 @@ class DH extends Component {
     }
 
 
-    /*切换日期,多选择*/
-    toggleDate(date){
-        let {activeDate} = this.state,results = [],temp = [],{DateChange,chooseNumber} = this.props;
-        let index = activeDate.indexOf(date)
-        if (index > -1){  /*选择日期在当前选择数组中时候---取消选择*/
-            activeDate.splice(index,1)
-            temp = activeDate
-        } else {  /*选择日期没有在当前选择数组中时候---选择*/
-            let now_time = new Date(Date.parse(date.replace(/-/g,"/"))).getTime();
-            const TIME_INTERVAL = 24 * 60 * 60 * 1000;
-            temp = [date];
-            let lastNum = chooseNumber - 1;
-            results[lastNum] = date;
-            for(let i = 1; i < chooseNumber; i++) {
-                let NextTime = now_time + i * TIME_INTERVAL,
-                    PrevTime = now_time - i * TIME_INTERVAL,
-                    NextDate = new Date(NextTime),
-                    PrevDate = new Date(PrevTime);
-                results[lastNum + i] = this.formatDateTime(NextDate);
-                results[lastNum - i] = this.formatDateTime(PrevDate);
-            }
-            activeDate.forEach((item) =>{
-                if (results.indexOf(item) > -1){
-                    temp.push(item)
-                }
-            })
-        }
-        this.setState({
-            "activeDate":temp
-        },function(){
-            DateChange && DateChange(temp.sort())
-        })
-        //let sortDate = temp.sort()
-        //console.log(now_time)
-    }
-    chooseSingle(date, tag){
-        let {DateChange} = this.props, temp= [date];
 
-        this.setState({
-            "activeDate":temp
-        },function(){
-            DateChange && DateChange(temp.sort(),tag);
-        })
-
-    }
     //改变今天明天的显示文字
     _changeText(holiday){
         let _special = Date.specialDate;
@@ -186,13 +143,6 @@ class DH extends Component {
             if(dataStr == holidays[i].date){
                 playContent = holidays[i].name||holidays[i].play == "1"&&"休"||holidays[i].play=="0"&&"班"||""
             }
-            /*if ((holidays[i].play == "1"||!holidays[i].play) && (dataStr == holidays[i].date)){
-                rest = true
-                playContent = holidays[i].play == "1"?!holidays[i].name&&"休"||holidays[i].name:"班"
-            }
-            if (holidays[i].name&& (dataStr == holidays[i].date)){
-                tip = holidays[i].name
-            }*/
         }
 
         return {playContent};
@@ -215,15 +165,14 @@ class DH extends Component {
     //处理选中的日期的颜色
     _BreakDateMiddle(dataStr){
 
-        let {startEndDate,middleDate} = this.props, _DateMiddle ={tag:false, middle:false, content:''};
-
+        let {startEndDate,middleDate} = this.state,  _DateMiddle ={tag:false, middle:false, content:''};
         if(startEndDate.length){
             for(let i = 0,len = startEndDate.length; i < len; i++) {
                 if(dataStr == startEndDate[i]){
                     _DateMiddle = {
                         tag:true,
                         middle: false,
-                        content: i === 0 ?'始':'终'
+                        content: i === 0 ?'入店':'离店'
                     }
                     break;
                 }
@@ -244,6 +193,57 @@ class DH extends Component {
         }
         return _DateMiddle;
     }
+
+    //设置日期
+    chooseDate(allow,date){
+        if(!allow){
+            return false;
+        }
+        /*点击了 判断
+            1. startEndDate这个值如果是双数则需要清空然后重新赋值， middleDate重新清空
+            2. startEndDate 如果这个值只有一个数，则要判断选中的数
+               1）如果选中的数等于当前数,    则什么都不操作，
+               2) 如果选中的数小于当前数，   则讲当前数替换成选中的数
+               3) 如果选中的数大于当前数字， 则赋值第二个数，并且计算出他们之前相隔的日期
+
+       */
+        let { startEndDate, middleDate } =  this.state;
+
+        //如果为两个值，则点击时就需要重新选择l
+        if(startEndDate.length == 2){
+            this.setState({
+                startEndDate: [date],
+                middleDate:[]
+            })
+            return;
+        }
+
+        //至少都有一天 如果选中的数等于当前数
+        if(startEndDate.length == 1 && startEndDate[0]===date){
+            return;
+        }
+
+        //如果选中的数小于当前数
+        if(startEndDate.length == 1 && date < startEndDate[0]){
+            this.setState({
+                startEndDate:[date]
+            });
+            return;
+        }
+        //如果选中的数大于当前数字
+        if(startEndDate.length == 1 && date > startEndDate[0]){;
+            //设置值
+            startEndDate.push(date);
+            let middleDate_new = Date.middleDateArray(startEndDate[0], startEndDate[1]);
+            //得到相差多少天， 然后传入天数，然后输出相差的值
+            this.setState({
+                startEndDate:  startEndDate,
+                middleDate: middleDate_new
+            })
+            return;
+        }
+    }
+
     render(){
         let {title, model} = this.props;
         let {week,monthArr} = this.state;
@@ -305,23 +305,25 @@ class DH extends Component {
                                                                         _BreakSellDetial =  this._BreakDateMiddle(dataStr);
                                                                         active = _BreakSellDetial.tag;
                                                                         middle =  _BreakSellDetial.middle
+
                                                                     }
 
                                                                     //allow && ( ClassStr = 'DH-month-date-allow');
                                                                     //allow && (classActiveStr = 'DH-active-date');
+                                                                   // console.log(active, middle);
                                                                     let _BreakData = this._BreakData(dataStr); //allow = _BreakData.playContent;
                                                                     return (
                                                                         <View className={classNames({
                                                                             "DH-month-date-allow": allow
-                                                                        })} key={daIndex + '_day*/'}
-                                                                             onClick={allow ? this.props.type=="common"&&this.toggleDate.bind(this,dataStr)||this.chooseSingle.bind(this, dataStr,_BreakSellDetial) : null}>
+                                                                        })} key={daIndex + '_day*/'} onClick={this.chooseDate.bind(this, allow, dataStr)}>
                                                                             <View className={classNames({
                                                                                 "DH-active-date": active,
                                                                                 "DH-active-middle-date": middle
                                                                             })}>
+
                                                                                 <View className={"tip"}>{_BreakData.playContent}</View>
                                                                                 {dataStr == new Date().format("yyyy-MM-dd")?<View className="cn_fontSize">今天</View>:<View className="en_fontSize">{day.date}</View>}
-                                                                                <View className="remark">{_BreakSellDetial.content?`¥${_BreakSellDetial.content}`:''}</View>
+                                                                                <View className="remark">{_BreakSellDetial.content?`${_BreakSellDetial.content}`:''}</View>
                                                                             </View>
                                                                         </View>
                                                                     )
@@ -336,7 +338,7 @@ class DH extends Component {
                             </ScrollView>
                         </View>
                     }
-                  {/*{this.renderMonth(monthArr)}*/}
+
             </View>
         )
     }

@@ -336,6 +336,17 @@ const baseUtil = {
             hot,
             hot1
         }
+    },
+    //计算两个日期之间相差多少天。 并把多少天拼接成多个数组
+    joinDateArray([date1, date2]){
+        console.log("date1", date1, date2);
+        const startDate=Date.parse(date1.replace('/-/g','/'));
+        const endDate=Date.parse(date2.replace('/-/g','/'));
+        let   diffDate=(endDate-startDate) + 1*24*60*60*1000;
+        let   days=diffDate/(1*24*60*60*1000);
+
+        console.log("days", days);
+
     }
 
 }

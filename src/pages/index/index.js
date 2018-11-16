@@ -13,7 +13,7 @@ import './index.less'
 }))
 class Index extends Component {
 
-    config = {
+  config = {
         "navigationBarTextStyle": "black",
   }
   constructor(props){
@@ -25,7 +25,9 @@ class Index extends Component {
           {label:"50块",value:50},
           {label:"70块",value:70},
           {label:"100块",value:100}
-        ]
+        ],
+         dateShow: false,
+         initDate:["2018-11-16", '2018-11-18']
       }
   }
 
@@ -65,11 +67,25 @@ class Index extends Component {
          url: '/pages/city/index'
      })
   }
+  //日期的显示
+    onDateStatus(status){
+      this.setState({
+          "dateShow": status
+      })
+    }
+
+    onGetDate(date){
+        this.setState({
+            "initDate": date,
+            dateShow: false
+        })
+    }
 
   render () {
+    let { dateShow,initDate } =  this.state;
     return (
       <View className='container'>
-        <TzHeader title='首页' mode='white' type={process.env.TARO_ENV} />
+          <TzHeader  mode='white' type={process.env.TARO_ENV} >首页</TzHeader>
         <Image className="index-banner" mode="aspectFill" src={config.imgDomain+"/images/hotel_banner_01.png"}/>
         <View className="pd-15">
           <View className="index-form">
@@ -85,7 +101,7 @@ class Index extends Component {
                 </View>
               </View>
             </View>
-            <View   className="bst-flex-box index-form-line">
+            <View   className="bst-flex-box index-form-line" onClick={this.onDateStatus.bind(this, true)}>
               <View className="text-ellipsis  bst-flex-box1">
                 <View className="index-time-start">
                   <View><Text className="line-date-number">9.14</Text><Text>今天</Text></View>
@@ -111,7 +127,7 @@ class Index extends Component {
           </View>
         </View>
         <Image className="index-logo" mode="aspectFill" src={config.imgDomain+"/images/tz-logo.png"}/>
-        <Date />
+        <Date onHiddenClick={this.onDateStatus.bind(this)} dateShow={dateShow} initDate={initDate} onGetDate={this.onGetDate.bind(this)}/>
       </View>
     )
   }

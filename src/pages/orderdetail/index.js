@@ -24,7 +24,7 @@ export default class Orderdetail extends Component {
   };
 
   componentDidMount = () => {
-
+        console.log("我会执行嘛")
   };
   renderTime(){
       var n = this.state.returntime;
