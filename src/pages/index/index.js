@@ -27,7 +27,7 @@ class Index extends Component {
           {label:"100块",value:100}
         ],
          dateShow: false,
-         initDate:["2018-11-16", '2018-11-18']
+         initDate:["2018-11-19", '2018-11-25']
       }
   }
 
@@ -78,6 +78,8 @@ class Index extends Component {
         this.setState({
             "initDate": date,
             dateShow: false
+        },()=>{
+            console.log("initDate", this.state.initDate);
         })
     }
 
@@ -85,7 +87,7 @@ class Index extends Component {
     let { dateShow,initDate } =  this.state;
     return (
       <View className='container'>
-          <TzHeader  mode='white' type={process.env.TARO_ENV} >首页</TzHeader>
+       {/*  <TzHeader  mode='white' type={process.env.TARO_ENV} >首页</TzHeader>*/}
         <Image className="index-banner" mode="aspectFill" src={config.imgDomain+"/images/hotel_banner_01.png"}/>
         <View className="pd-15">
           <View className="index-form">

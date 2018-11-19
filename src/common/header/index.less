@@ -9,7 +9,7 @@
   overflow: hidden;
   &.h5-header-gradient,&.weapp-header-gradient{
     background:linear-gradient(90deg,rgba(99,198,249,1),rgba(72,157,245,1));
-    color:#fff
+    color:#fff;
   }
   &.h5-header-white,&.weapp-header-white{
     background:#fff;
@@ -41,6 +41,18 @@
       align-items: center;
       justify-content: center;
       z-index:990;
+      .header-icon{
+        width: 30px;
+        height: 30px;
+        border-left: 6px solid #999999;
+        border-bottom: 6px solid #999999;
+        -webkit-transform: rotateZ(45deg);
+        -moz-transform: rotateZ(45deg);
+        -ms-transform: rotateZ(45deg);
+        -o-transform: rotateZ(45deg);
+        transform: rotateZ(45deg);
+        border-radius:0 0 0 6px;
+      }
       .headerleftIconWhite{
         display: inline-block;
         background: url('@{globalAddress}/btn_white-back@2x.png') no-repeat;

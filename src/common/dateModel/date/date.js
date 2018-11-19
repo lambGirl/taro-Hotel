@@ -1,5 +1,5 @@
 import Taro,{ Component }from '@tarojs/taro';
-import {ScrollView, View, Text}  from '@tarojs/components';
+import {ScrollView, View}  from '@tarojs/components';
 import './common/rely.js';
 import SelfYear from './common/Class.js';
 import classNames from 'classnames'
@@ -54,11 +54,16 @@ class DH extends Component {
         }
     }
     componentWillReceiveProps (nextProps) {
-        let {initDate} = this.props;
-        this.setState({
-            startEndDate:initDate,
-            middleDate: initDate.length===2?Date.middleDateArray(initDate[0], initDate[1]):[]
-        });
+        let {initDate} = this.props,{ startEndDate } =  this.state;
+        if(nextProps.initDate.toString() !==  startEndDate.toString()){
+            this.setState({
+                startEndDate:initDate,
+            },()=>{
+                this.setState({
+                    middleDate: initDate.length===2?Date.middleDateArray(initDate[0], initDate[1]):[]
+                })
+            });
+        }
     }
 
     componentWillMount(){
@@ -111,8 +116,6 @@ class DH extends Component {
         }
         return results
     }
-
-
 
     //改变今天明天的显示文字
     _changeText(holiday){

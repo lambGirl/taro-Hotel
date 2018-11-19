@@ -81,6 +81,7 @@ function formatCss(css) {
   }
   let styleObj={},cA;
   if(typeof css =="string"){
+      css=css.replace(/\s+/g,"");
       cA=css.split(";").filter(function (f) {
         return /^\S+:\S+$/.test(f)
       });
@@ -88,7 +89,7 @@ function formatCss(css) {
     cA=[];
     Object.keys(css).forEach(function (key) {
       if(key!=""){
-        cA.push(key+":"+css[key])
+        cA.push(key.replace(/\s+/g,"")+":"+css[key].replace(/\s+/g,""))
       }
     })
   }
@@ -107,6 +108,7 @@ function formatCss(css) {
 function mergeCssStr() {
   return formatCss(Object.assign.apply({},[].map.call(arguments,function (cssstr) {
     let obj={};
+    cssstr=cssstr.replace(/\s+/g,"");
     cssstr.split(";").forEach(function (f) {
       if(/^\S+:\S+$/.test(f)){
         let fa=f.split(":");

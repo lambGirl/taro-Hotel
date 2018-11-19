@@ -23,6 +23,7 @@ export default class Date extends Component{
         let {startEndDate} =  this.refs.date.state;
         this.props.onGetDate(startEndDate);
     }
+
     render(){
         let { title, dateShow,initDate } =  this.props;
         return <View className='weappH5-date' style={{"display":dateShow?'block':'none'}}>

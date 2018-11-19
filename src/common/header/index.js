@@ -3,9 +3,11 @@ import { View, Text} from '@tarojs/components';
 import classnames from 'classnames';
 import { back }  from '../../utils'
 import './index.less'
-
+import {mergeCssStr,formatCss}from '../common'
  class Header extends Component{
     constructor(props){
+        props.boxStyle=props.boxStyle||'';
+        props.iconStyle=props.iconStyle||'';
         super(props);
         this.state = {
             headerHeight: 90,
@@ -51,21 +53,22 @@ import './index.less'
     }
 
     render(){
-        let { title, type, mode, rightText } =  this.props, { headerHeight } =  this.state;
+        let { title, type, mode, rightText,boxStyle,iconStyle } =  this.props, { headerHeight } =  this.state;
         let leftIcon =  this.leftIcon(mode), styles={
             "paddingTop":Taro.pxTransform(headerHeight)
         };
 
         let heightVal = Taro.pxTransform(headerHeight);
         //判断微信的header
-        return <View  style={{"height":heightVal}} className={classnames('header-parent',{
+        return <View  style={mergeCssStr(boxStyle,"height:"+heightVal)} className={classnames('header-parent',{
               [`${type}-header-${mode}`]:true,
             })}>
                 <View className={classnames({
                     "header-common":true,
                 })}>
                     <View className='left-header' onClick={this.leftPropsClick.bind(this)}>
-                        <Text className={classnames(`headerleftIcon${leftIcon}`)}></Text>
+                        <View className="header-icon"  style={formatCss(iconStyle)} > </View>
+                        {/*<Text className={classnames(`headerleftIcon${leftIcon}`)}> </Text>*/}
                     </View>
                     <View className='center-header'>{this.props.children}</View>
                     <View className='right-header'>

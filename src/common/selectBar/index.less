@@ -77,8 +77,8 @@ page{
   position: absolute;
   .mainContent{
     height: 480px;
-    animation:changeHeight .4s;
-    -webkit-animation:changeHeight .4s; /* Safari 和 Chrome */
+    animation:changeHeightSelectBarContent .4s;
+    -webkit-animation:changeHeightSelectBarContent .4s; /* Safari 和 Chrome */
     overflow-y: auto;
     background: #fff;
   }
@@ -103,13 +103,13 @@ page{
   }
 }
 
-@keyframes changeHeight
+@keyframes changeHeightSelectBarContent
 {
   from {height:0px;}
   to {height: 480px;}
 }
 
-@-webkit-keyframes changeHeight /*Safari and Chrome*/
+@-webkit-keyframes changeHeightSelectBarContent /*Safari and Chrome*/
 {
   from {height: 0px;}
   to {height:  480px;}

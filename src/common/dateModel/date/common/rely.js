@@ -72,7 +72,7 @@ Date.middleDateArray = function(date1, date2){
     }
     let newDateArray = [];
 
-    for(let  i = 1; i <= days; i++){
+    for(let  i = 1; i <= days-2; i++){
             newDateArray.push(new Date(startDate).add(i).format("yyyy-MM-dd"));
     }
     return newDateArray;
