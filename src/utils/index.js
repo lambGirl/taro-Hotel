@@ -347,6 +347,10 @@ const baseUtil = {
 
         console.log("days", days);
 
+    },
+    //计算高度
+    calcHeightWeappH5(height){
+        return Taro.pxTransform(height);
     }
 
 }

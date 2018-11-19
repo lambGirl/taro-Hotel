@@ -25,6 +25,7 @@ export default class Orderdetail extends Component {
     }
 
     componentDidMount = () => {
+        //这个页面的高度还需要得到当前设备的高度,然后减去header的高度， 减去bar的高度
 
     }
 
@@ -66,6 +67,7 @@ export default class Orderdetail extends Component {
 
     render() {
         let { tabActive, listData, page, total} = this.state;
+
         return (
             <View className='orderDetail-page'>
                 <TzHeader   mode='gradient' type={process.env.TARO_ENV} onClick={this.headerLeftClick.bind(this)}>

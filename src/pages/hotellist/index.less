@@ -2,84 +2,88 @@
 page{
   color: #F5F5F5;
 }
-
-.timeHeaderSearchBar{
-  height: 60px;
-  width: 68%;
-  margin: 0 auto;
-  background:rgba(245,245,245,1);
-  border-radius:30px;
-  display: flex;
-  align-items: center;
-  .left-section{
+.hotellist{
+  height:100%;
+  .timeHeaderSearchBar{
+    height: 60px;
+    width: 68%;
+    margin: 0 auto;
+    background:rgba(245,245,245,1);
+    border-radius:30px;
     display: flex;
-    height: 100%;
-    width: 32%;
-    box-sizing: border-box;
     align-items: center;
-    justify-content: space-between;
-    .date-choose{
+    .left-section{
       display: flex;
       height: 100%;
-      flex-direction: column;
-      justify-content: space-between;
-      font-size: 20px;
+      width: 32%;
       box-sizing: border-box;
-      padding: 7px 0 7px 19px;
-      color: #989898;
-      .special-size{
-        color: #38A8F6;
-      }
-    }
-    .date-choose>div,.date-choose>view{
-      height: 20px;
-      line-height: 20px;
-      white-space: nowrap;
-    }
-    .down-arrow{
-      width: 18px;
-      height: 14px;
-      background: url("@{globalAddress}/icon_down_arrow.png");
-      background-size: 100% 100%;
-      background-position: center center;
-    }
-    .middel-line{
-      width: 2px;
-      height: 30px;
-      background: #BFBFBF;
-      margin-left: 2.2%;
-    }
-  }
-  .right-section{
-    width: 69.6%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    padding-left: 20px;
-    .search-bar-icon{
-      width: 32px;
-      height: 32px;
-      background: url("@{globalAddress}/btn_search.png") no-repeat;
-      background-size: contain;
-    }
-    .InputBar{
-      height: 100%;
-      input{
+      align-items: center;
+      justify-content: space-between;
+      .date-choose{
+        display: flex;
         height: 100%;
-        color:#BEBEBE;
-        padding-left: 10px;
-        font-size:26px;
-        padding-right: 19px;
+        flex-direction: column;
+        justify-content: space-between;
+        font-size: 20px;
         box-sizing: border-box;
+        padding: 7px 0 7px 19px;
+        color: #989898;
+        .special-size{
+          color: #38A8F6;
+        }
       }
+      .date-choose>div,.date-choose>view{
+        height: 20px;
+        line-height: 20px;
+        white-space: nowrap;
+      }
+      .down-arrow{
+        width: 18px;
+        height: 14px;
+        background: url("@{globalAddress}/icon_down_arrow.png");
+        background-size: 100% 100%;
+        background-position: center center;
+      }
+      .middel-line{
+        width: 2px;
+        height: 30px;
+        background: #BFBFBF;
+        margin-left: 2.2%;
+      }
+    }
+    .right-section{
+      width: 69.6%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      padding-left: 20px;
+      .search-bar-icon{
+        width: 32px;
+        height: 32px;
+        background: url("@{globalAddress}/btn_search.png") no-repeat;
+        background-size: contain;
+      }
+      .InputBar{
+        height: 100%;
+        input{
+          height: 100%;
+          color:#BEBEBE;
+          padding-left: 10px;
+          font-size:26px;
+          padding-right: 19px;
+          box-sizing: border-box;
+        }
+      }
+    }
+  }
+  .hotel-list-scroll-content{
+    .hotellist-realList-container{
+      width: 100%;
+      padding-left: 30px;
+      background: #fff;
+      margin-top: 20px;
+
     }
   }
 }
 
-.hotellist-realList-container{
-  width: 100%;
-  padding-left: 30px;
-  background: #fff;
-  margin-top: 20px;
-
-}

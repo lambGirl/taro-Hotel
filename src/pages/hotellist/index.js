@@ -5,6 +5,11 @@ import { TzHeader, SelectBar,HotelListItem } from "../../common"
 import './index.less';
 import classnames from 'classnames'
 import Scroll from "../../common/scroll"
+import { baseUtil } from "../../utils";
+
+@connect(({globle})=>({
+    globle
+}))
 export default class HotelList extends Component{
 
     config = {
@@ -14,27 +19,12 @@ export default class HotelList extends Component{
     constructor(props){
         super(props);
         this.state = {
-            outHeight:90,
             page: 1,
             total:0
         }
     }
 
     componentDidMount(){
-        let { outHeight } = this.state;
-        if(Taro.getEnv() === "WEAPP") {
-            wx.getSystemInfo({
-                success: res => {
-                    //console.log("statusBarHeight",res.statusBarHeight,  headerHeight);
-                    outHeight +=res.statusBarHeight*2;
-                    this.setState({
-                        "outHeight":  outHeight
-                    })
-                }
-            })
-        }
-
-       // console.log("1111111", this.refs.header.vnode.dom.offsetHeight, this.refs.SelectBar.vnode.dom);
     }
 
     onScrollToLower(e){
@@ -42,9 +32,10 @@ export default class HotelList extends Component{
     }
 
     render(){
-        let { outHeight, page, total } =  this.state;
 
-        return <View>
+        let { page, total } =  this.state, {outHeight} =  this.props.globle;
+        let Height =  outHeight + 100 + 88, SelectBarHeight = outHeight+88;
+        return <View className='hotellist'>
             <TzHeader   mode='whiteBlue' type={process.env.TARO_ENV} rightText='地图' ref='header'>
                 <View className='timeHeaderSearchBar'>
                     <View className='left-section'>
@@ -65,22 +56,24 @@ export default class HotelList extends Component{
                     </View>
                 </View>
             </TzHeader>
-            <SelectBar outHeight={outHeight} ref='SelectBar'/>
-            <Scroll
-                page={page}
-                total={total}
-                height='572px'
-                needMore={true}
-                onScrollToLower={this.onScrollToLower.bind(this)}
-            >
-                <View className='hotellist-realList-container'>
-                    <HotelListItem />
-                    <HotelListItem />
-                    <HotelListItem />
-                    <HotelListItem />
-                    <HotelListItem />
-                </View>
-            </Scroll>
+            <SelectBar outHeight={SelectBarHeight} ref='SelectBar'/>
+            <View className="hotel-list-scroll-content" style={{"height":`calc(100% - ${baseUtil.calcHeightWeappH5(Height)})`}}>
+                <Scroll
+                    page={page}
+                    total={total}
+                    height='100%'
+                    needMore={true}
+                    onScrollToLower={this.onScrollToLower.bind(this)}
+                >
+                    <View className='hotellist-realList-container'>
+                        <HotelListItem />
+                        <HotelListItem />
+                        <HotelListItem />
+                        <HotelListItem />
+                        <HotelListItem />
+                    </View>
+                </Scroll>
+            </View>
         </View>
     }
 }
