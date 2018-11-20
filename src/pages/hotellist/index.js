@@ -36,7 +36,7 @@ export default class HotelList extends Component{
         let { page, total } =  this.state, {outHeight} =  this.props.globle;
         let Height =  outHeight + 100 + 88, SelectBarHeight = outHeight+88;
         return <View className='hotellist'>
-            <TzHeader   mode='whiteBlue' type={process.env.TARO_ENV} rightText='地图' ref='header'>
+            <TzHeader   mode='whiteBlue' type={process.env.TARO_ENV} rightText='地图'>
                 <View className='timeHeaderSearchBar'>
                     <View className='left-section'>
                         <View className='date-choose'>

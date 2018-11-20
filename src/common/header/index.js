@@ -60,12 +60,8 @@ import {mergeCssStr,formatCss}from '../common'
 
         let heightVal = Taro.pxTransform(headerHeight);
         //判断微信的header
-        return <View  style={mergeCssStr(boxStyle,"height:"+heightVal)} className={classnames('header-parent',{
-              [`${type}-header-${mode}`]:true,
-            })}>
-                <View className={classnames({
-                    "header-common":true,
-                })}>
+        return <View  style={mergeCssStr(boxStyle,"height:"+heightVal)} className={classnames('header-parent',{[`${type}-header-${mode}`]:true,})}>
+                <View className={classnames({"header-common":true,})}>
                     <View className='left-header' onClick={this.leftPropsClick.bind(this)}>
                         <View className="header-icon"  style={formatCss(iconStyle)} > </View>
                         {/*<Text className={classnames(`headerleftIcon${leftIcon}`)}> </Text>*/}

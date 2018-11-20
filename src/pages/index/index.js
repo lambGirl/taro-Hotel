@@ -73,13 +73,19 @@ class Index extends Component {
           "dateShow": status
       })
     }
-
+    //获取日期
     onGetDate(date){
         this.setState({
-            "initDate": date,
+           "initDate": date,
             dateShow: false
         },()=>{
             console.log("initDate", this.state.initDate);
+        })
+    }
+
+    showphoto(){
+        Taro.navigateTo({
+            url: '/pages/photoshow/index'
         })
     }
 
@@ -88,7 +94,7 @@ class Index extends Component {
     return (
       <View className='container'>
        {/*  <TzHeader  mode='white' type={process.env.TARO_ENV} >首页</TzHeader>*/}
-        <Image className="index-banner" mode="aspectFill" src={config.imgDomain+"/images/hotel_banner_01.png"}/>
+        <Image className="index-banner" mode="aspectFill" src={config.imgDomain+"/images/hotel_banner_01.png"} onClick={this.showphoto.bind(this)}/>
         <View className="pd-15">
           <View className="index-form">
             <View  className="bst-flex-box index-form-line">

@@ -5,8 +5,9 @@ import { OrderItem, TzHeader, TabItem,Scroll } from  '../../common'
 import './index.less';
 import { back }  from '../../utils'
 
-@connect(({orderlist}) => ({
+@connect(({orderlist, globle }) => ({
     ...orderlist,
+    globle
 }))
 
 export default class Orderdetail extends Component {
@@ -34,13 +35,14 @@ export default class Orderdetail extends Component {
     }
 
     onScrollToLower = (e) => {
-       // console.log("e----onScrollToLower",e);
+        //console.log("e----onScrollToLower",e);
         //执行加载并且设置数据
-        let data = [1,2,3,4,5], {listData, page, total} =  this.state;
+        let data = [1,2,3,4,5], {listData, page, total} =  this.state
         page += 1;
         if(page > total){
             return;
         };
+
         this.setState({
             "listData": listData.concat(data),
             'page': page
@@ -67,17 +69,18 @@ export default class Orderdetail extends Component {
 
     render() {
         let { tabActive, listData, page, total} = this.state;
-
+        let {outHeight} =  this.props.globle;
         return (
             <View className='orderDetail-page'>
                 <TzHeader   mode='gradient' type={process.env.TARO_ENV} onClick={this.headerLeftClick.bind(this)}>
                     酒店订单
                 </TzHeader>
-                <TabItem tabItem={["全部","未使用","已使用"]} onClick={this.tabPropsClick.bind(this)} tabActive={tabActive}>
+                <TabItem height={outHeight+88} tabItem={["全部","未使用","已使用"]} onClick={this.tabPropsClick.bind(this)} tabActive={tabActive}>
                     {tabActive == 0?<Scroll
                         page={page}
                         total={total}
                         needMore={true}
+                        height='100%'
                         onScrollToUpper={this.onScrollToUpper.bind(this)}
                         onScrollToLower={this.onScrollToLower.bind(this)}
                     >
@@ -92,6 +95,7 @@ export default class Orderdetail extends Component {
                     {tabActive == 1?<Scroll
                         page={page}
                         total={total}
+                        height='100%'
                         needMore={true}
                         onScrollToUpper={this.onScrollToUpper.bind(this)}
                         onScrollToLower={this.onScrollToLower.bind(this)}
@@ -108,6 +112,7 @@ export default class Orderdetail extends Component {
                         page={page}
                         total={total}
                         needMore={true}
+                        height='100%'
                         onScrollToUpper={this.onScrollToUpper.bind(this)}
                         onScrollToLower={this.onScrollToLower.bind(this)}
                     >

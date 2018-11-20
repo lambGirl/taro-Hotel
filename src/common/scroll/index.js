@@ -20,8 +20,8 @@ export default class Scroll extends Component{
       scrollY
       scrollWithAnimation
       scrollTop='0'
-      style={{height: height}}
-      lowerThreshold='40'
+      style={{"height": height}}
+      lowerThreshold='60'
       upperThreshold='20'
       onScrollToUpper={this.onScrollToUpper.bind(this)}
       onScrollToLower={this.onScrollToLower.bind(this)}

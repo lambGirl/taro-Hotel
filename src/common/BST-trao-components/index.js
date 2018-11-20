@@ -298,5 +298,18 @@ class BSTHeader extends Component {
     !flag&&Taro.navigateBack()
   }
 }
+class BSTAdsorbent extends Component {
+  constructor(props){
+    super(props)
+  }
+  componentDidMount(){
+    console.log(this,"----dsadsaas--------");
 
-export { BSTSlider,BSTHeader}
+  }
+  render(){
+    return <View className="bst-adsorbent-box">
+      <View className="bst-adsorbent-content">{this.props.children}</View>
+    </View>
+  }
+}
+export { BSTSlider,BSTHeader,BSTAdsorbent}

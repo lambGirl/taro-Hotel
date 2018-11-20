@@ -76,7 +76,7 @@ class Displacementer {
 }
 function formatCss(css) {
   if(!css){
-    console.log("format css parameter error!");
+    console.log("format css parameter error!:"+css);
     return {}
   }
   let styleObj={},cA;
@@ -108,7 +108,7 @@ function formatCss(css) {
 function mergeCssStr() {
   return formatCss(Object.assign.apply({},[].map.call(arguments,function (cssstr) {
     let obj={};
-    cssstr=cssstr.replace(/\s+/g,"");
+    cssstr=(cssstr||'').replace(/\s+/g,"");
     cssstr.split(";").forEach(function (f) {
       if(/^\S+:\S+$/.test(f)){
         let fa=f.split(":");
